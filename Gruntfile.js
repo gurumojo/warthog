@@ -19,9 +19,6 @@ module.exports = function( grunt ){
         }
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
-    },
     jsdoc: {
       files: ['README.md', 'src'],
       options: {
@@ -40,6 +37,9 @@ module.exports = function( grunt ){
         }
       }
     },
+    qunit: {
+      files: ['test/**/*.html']
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -51,17 +51,10 @@ module.exports = function( grunt ){
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
+      files: ['README.md', '<%= jshint.files %>'],
+      tasks: ['test']
     }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
   /**
    * JSDoc Grunt Task
@@ -141,7 +134,14 @@ module.exports = function( grunt ){
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('test', ['jsdoc', 'jshint', 'qunit']);
   grunt.registerTask('default', ['jsdoc', 'jshint', 'qunit', 'concat', 'uglify']);
 
 };

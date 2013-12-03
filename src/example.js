@@ -11,18 +11,26 @@ define(['underscore'], function(_){
 	 * @constructor
 	 * @param {object} option enumerated static properties
 	 */
-	var example = function Example(option){
+	var Example = function Example(option){
 		_.each(option, function(value, key){
 			this[key] = value;
 		}, this);
 	};
 
-	example.prototype = {
+	Example.prototype = {
 
-		/** binomial nomenclature - first part */
+		/**
+		 * binomial nomenclature - first part
+		 *
+		 * @type {string}
+		 */
 		genus: null,
 
-		/** binomial nomenclature - second part */
+		/**
+		 * binomial nomenclature - second part
+		 *
+		 * @type {string}
+		 */
 		species: null,
 
 		/**
@@ -36,5 +44,5 @@ define(['underscore'], function(_){
 		}
 	};
 
-	return example;
+	return Example;
 });
