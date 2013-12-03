@@ -2,33 +2,56 @@ module.exports = function( grunt ){
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    clean: {
+		files: ['build/<%= pkg.version %>'],
+    },
+    compress: {
+      main: {
+        options: {
+          archive: 'build/<%= pkg.name %>_<%= pkg.version %>.tgz'
+        },
+        src: ['build/<%= pkg.version %>/**']
+      }
+    },
     concat: {
       options: {
         separator: ';'
       },
       dist: {
-        src: ['src/**/*.js'],
-        dest: 'var/<%= pkg.name %>.js'
+        src: ['system/src/**/*.js'],
+        dest: 'build/<%= pkg.version %>/src/<%= pkg.name %>.js'
       }
     },
     connect: {
-      //uses_defaults: {}
       server: {
         options: {
           base: '.'
         }
       }
     },
+    copy: {
+      img: {
+        expand: true,
+        cwd: 'system/src/',
+        src: ['img/**'],
+        dest: 'build/<%= pkg.version %>/src/'
+      },
+      lib: {
+        expand: true,
+        cwd: 'system/',
+        src: ['lib/**'],
+        dest: 'build/<%= pkg.version %>'
+      }
+    },
     jsdoc: {
-      files: ['README.md', 'src'],
+      files: ['README.md', 'system/src'],
       options: {
-        destination: './jsdoc'
+        destination: 'system/doc'
       }
     },
     jshint: {
-      files: ['src/**/*.js', 'test/**/*.js'],
+      files: ['system/bin/**/*.js', 'system/src/**/*.js', 'test/**/*.js'],
       options: {
-        // JSHint default overrides
         globals: {
           jQuery: true,
           console: true,
@@ -42,11 +65,11 @@ module.exports = function( grunt ){
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       dist: {
         files: {
-          'var/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          'build/<%= pkg.version %>/src/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },
@@ -134,14 +157,24 @@ module.exports = function( grunt ){
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  //grunt.loadNpmTasks('grunt-contrib-csslint');
+  //grunt.loadNpmTasks('grunt-contrib-cssmin');
+  //grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  /** @todo aws npm install grunt-contrib-imagemin --save-dev */
+  //grunt.loadNpmTasks('grunt-contrib-imagemin');
+  //grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  //grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('test', ['jsdoc', 'jshint', 'qunit']);
-  grunt.registerTask('default', ['jsdoc', 'jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['clean', 'jsdoc', 'jshint', 'qunit', 'concat', 'uglify', 'copy', 'compress']);
 
 };

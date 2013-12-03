@@ -4,10 +4,33 @@ Example Package
 - Gruntfile.js (task automation)
 - package.json (package metadata)
 - README.md (user guide)
-- src/
-	- example.js (AMD object constructor)
-	- main.js (RequireJS bootstrap)
-- test/
+- build/ (target sandbox and archive)
+	- 0.0.0/ (symlink to system files)
+	- \*.\*.\*/ (version hierarchies)
+	- example_\*.\*.\*.tgz (version archives)
+- instance/ (browser target directory)
+	- index.html (hypertext application)
+- system/ (development files)
+	- bin/ (executable scripts)
+		- build.sh (r.js wrapper)
+	- doc/ (source documentation)
+		- [placeholder]
+	- etc/ (project configuration)
+		- build.js (optimizer instructions)
+	- lib/ (external libraries)
+		- require.js (Node module requirejs)
+		- underscore.js (Node module underscore)
+	- src/ (application root)
+		- example.js (AMD object constructor)
+		- html.js (RequireJS in HTML)
+		- main.js (RequireJS in Node)
+		- css/ (style sheets)
+			- main.css (web app styles)
+		- img/ (image library)
+			- favicon.ico (shortcut icon)
+			- icon.png (apple touch icon)
+			- loading.gif (progress indicator)
+- test/ (unit and functional tests)
 	- example.html (QUnit test runner)
 
 
@@ -97,7 +120,7 @@ The grunt-contrib-connect plugin will serve up pages until the process is killed
 
 >`grunt connect:server:keepalive`
 
-Then point a web browser to [http://localhost:8000/jsdoc/](http://localhost:8000/jsdoc/).
+Then point a web browser to [http://localhost:8000/instance/](http://localhost:8000/instance/).
 
 
 -------------
