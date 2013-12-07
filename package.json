@@ -2,13 +2,17 @@
   "name": "example",
   "version": "0.0.1",
   "description": "example package",
-  "main": "src/main.js",
+  "main": "system/src/main",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "example"
+    "url": "git://localhost:example.git"
+  },
+  "dependencies": {
+    "requirejs": "~2.1.9",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
@@ -27,8 +31,9 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-replace": "~0.5.1",
     "jsdoc": "~3.3.0",
-    "requirejs": "~2.1.9",
-    "underscore": "~1.5.2"
+    "semver": "~2.2.1",
+    "stripcolorcodes": "~0.1.0"
   }
 }

@@ -1,0 +1,272 @@
+/**
+ * Main CSS
+ *
+ * @see http://glyphicons.com/
+ * @see http://getbootstrap.com/getting-started/
+ */
+/*
+@import "bootstrap/2.3.1/min.css";
+@import "bootstrap/2.3.1/responsive/min.css";
+
+[class^="icon-"], [class*=" icon-"] {
+	background-image: url("../img/bootstrap/2.3.1/glyphicons-halflings.png");
+}
+*/
+
+/**
+ * general presentation
+ */
+[role="main"] {
+	padding-top: 1em;
+}
+.splash {
+	margin-right: auto;
+	margin-left: auto;
+	width: 50px;
+}
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+input[type='text'],
+input[type='password'],
+textarea {
+	font-size: 16px;
+}
+h1 {
+	font-size: 20px;
+	line-height: 24px;
+	margin-bottom: 20px;
+}
+h2 {
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 20px;
+}
+h3 {
+	font-size: 15px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+.center, a.btn.center {
+	text-align: center;
+}
+.btn h2 {
+	margin: 5px 10px;
+	overflow: hidden;
+}
+.btn h3 {
+	margin: 7px 10px;
+	overflow: hidden;
+}
+.btn i {
+	margin: 10px;
+}
+.btn p {
+	margin: 0 10px;
+	overflow: hidden;
+}
+.pagination ul > li > a {
+	padding: 10px 16px;
+}
+.well {
+	overflow: hidden;
+}
+.well h1, .well h2 {
+	border-bottom: 1px solid #ddd;
+}
+.well .btn h1, .well .btn h2 {
+	border: 0;
+}
+article .well {
+	margin-bottom: 0;
+}
+div.calendar {
+	margin: 0 auto;
+	width: 294px;
+}
+table.calendar .today {
+	font-weight: bolder;
+	border-color: red;
+}
+table.calendar {
+	margin-top: -20px;
+	margin-bottom: 20px;
+}
+table.calendar thead {
+	padding: 0.6em;
+}
+table.calendar tbody {
+	padding: 0.6em 0;
+}
+table.calendar th {
+	padding: 0.7em 0;
+}
+table.calendar tfoot th {
+	padding: 0;
+}
+table.calendar td {
+	padding: 1px;
+}
+table.calendar a.btn {
+	text-align: center;
+	padding: 0.75em 0;
+}
+table.calendar .btn i {
+	margin: 0;
+}
+table.calendar th, table.calendar td {
+	width: 40px;
+	text-align: center;
+}
+th {
+	vertical-align: top;
+	text-align: left;
+	padding-right: 1em;
+}
+td {
+	padding-right: 1em;
+}
+.error {
+	color: red;
+	padding: 0 .5em;
+}
+p {
+	clear: both;
+}
+a.btn {
+	text-align: left;
+}
+.btn-icon {
+	padding: 0 5% 0 35%;
+	margin-top: -8px;
+}
+.btn-text {
+	position: absolute;
+	margin-top: 12px;
+}
+.btn-large {
+	font-size: 20px;
+	height: 70px;
+}
+.btn-block {
+	width: 99.25%;
+	padding-right: 0;
+	padding-left: 0;
+}
+.btn-block + .btn-block {
+	margin-top: 0;
+}
+ul.nav {
+	/*width: 100%;*/
+}
+.nav > li.pull-right {
+	float: right !important;
+}
+.nav > li.home_menu {
+	/*background: url(../img/home.png) no-repeat right 12px;*/
+}
+.brand > .icon-chevron-left, .brand > .icon-user {
+	vertical-align: 0;
+}
+.navbar .nav {
+	margin-right: auto;
+	margin-left: auto;
+	float: none;
+}
+#back #splash img, #next #splash img {
+	width: 14px;
+}
+#content nav.navbar ul.nav {
+	width: 100%;
+	padding-bottom: 2em;
+}
+#content nav.navbar ul.nav > li > a {
+	color: #08c;
+	text-shadow: none;
+}
+#content nav.navbar ul.nav > li > a:hover {
+	text-decoration: underline;
+	color: #005580;
+}
+.header {
+	display: inline-block;
+}
+.footer {
+	margin-top: 2em;
+	/* border-top: 1px solid #EEE; */
+	color: #999;
+}
+.footer span {
+	padding-top: 1em;
+}
+
+
+/**
+ * WAI-ARIA presentation
+ */
+[aria-hidden=true] {visibility: hidden;}
+
+.treeitem[role="treeitem"][aria-selected="true"] {color: white; background-color: #222222;}
+
+.treeitem[role="treeitem"][aria-selected="false"] {color: white; background-color: beige;}
+
+
+/**
+ * responsive presentation
+ */
+@media (max-width: 480px) {
+	.btn-icon {
+		padding: 0 5% 0 25%;
+	}
+	.well {
+		padding: 9px;
+		margin-bottom: 10px;
+	}
+}
+@media (min-width: 481px) and (max-width: 767px) {
+	.well {
+		padding: 12px;
+		margin-bottom: 15px;
+	}
+}
+@media (max-width: 767px) {
+	body {
+		padding-right: .5em;
+		padding-left: .5em;
+	}
+	h1, h2 {
+		margin-bottom: 15px;
+	}
+	legend {
+		margin-bottom: 7px;
+	}
+	.form-horizontal .control-group {
+		margin-bottom: 8px;
+	}
+	td {
+		padding-right: .5em;
+	}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+@media (max-width: 979px) {
+	
+}
+@media (min-width: 980px) {
+
+}
+@media (min-width: 1200px) {
+
+}

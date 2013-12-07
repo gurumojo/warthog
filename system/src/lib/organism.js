@@ -1,48 +1,40 @@
 /**
- * Example Constructor
+ * Organism Constructor
  */
 define(['underscore'], function(_){
 
 	/**
 	 * Create a new object with supplied attributes
 	 *
-	 * @exports Example
+	 * @exports Organism
 	 * @version 0.0
 	 * @constructor
 	 * @param {object} option enumerated static properties
 	 */
-	var Example = function Example(option){
+	var organism = function Organism(option){
 		_.each(option, function(value, key){
 			this[key] = value;
 		}, this);
 	};
 
-	Example.prototype = {
+	organism.prototype = {
 
-		/**
-		 * binomial nomenclature - first part
-		 *
-		 * @type {string}
-		 */
+		/** binomial nomenclature - first part */
 		genus: null,
 
-		/**
-		 * binomial nomenclature - second part
-		 *
-		 * @type {string}
-		 */
+		/** binomial nomenclature - second part */
 		species: null,
 
 		/**
 		 * Get specific object members
 		 *
 		 * @param {object} option property query hash
-		 * @return {array} member object collection
+		 * @return {object}
 		 */
 		search: function(option){
 			return _.where(this, option);
 		}
 	};
 
-	return Example;
+	return organism;
 });
