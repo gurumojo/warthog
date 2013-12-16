@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://localhost:example.git"
+    "url": "https://github.com/zossz/warthog.git"
   },
   "dependencies": {
     "requirejs": "~2.1.9",
