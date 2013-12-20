@@ -14,6 +14,7 @@ Example Package
 - system/ (development files)
 	- css/ (style sheets)
 		- main.css (web app styles)
+		- qunit.css (QUnit styles)
 	- doc/ (source documentation)
 		- [placeholder]
 	- img/ (image library)
@@ -21,6 +22,7 @@ Example Package
 		- icon.png (apple touch icon)
 		- loading.gif (progress indicator)
 	- lib/ (external libraries)
+		- qunit.js (Node module qunit)
 		- require.js (Node module requirejs)
 		- underscore.js (Node module underscore)
 	- src/ (application root)
@@ -28,8 +30,11 @@ Example Package
 		- lib/ (internal libraries)
 			- example.js (AMD object constructor)
 			- initialize.js (application bootstrap)
-- test/ (unit and functional tests)
-	- example.html (QUnit test runner)
+		- test/ (unit and functional tests)
+			- main.js (test config)
+			- example.html (QUnit test runner)
+			- lib/ (test libraries)
+				- example.js (tests for src/lib/example.js)
 
 
 -------

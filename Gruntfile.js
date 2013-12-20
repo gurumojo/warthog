@@ -32,7 +32,7 @@ module.exports = function( grunt ){
         separator: ';'
       },
       lib: {
-        src: ['system/lib/underscore.js'],
+        src: ['system/lib/*.js'],
         dest: 'build/<%= pkg.version %>/lib/exports.js'
       }
     },
@@ -71,7 +71,8 @@ module.exports = function( grunt ){
           'overqualified-elements': false,
           'qualified-headings': false,
           'unique-headings': false,
-          'unqualified-attributes': false
+          'unqualified-attributes': false,
+          'vendor-prefix': false
         },
         src: ['system/css/**/*.css']
       }
@@ -101,14 +102,15 @@ module.exports = function( grunt ){
       }
     },
     jsdoc: {
-      src: ['README.md', 'system/src/**/*.js'],
+      src: ['README.md', 'system/src/main.js', 'system/src/lib/**/*.js'],
       options: {
         destination: 'system/doc/'
       }
     },
     jshint: {
-      src: ['system/bin/**/*.js', 'system/src/**/*.js', 'system/src/lib/**/*.js', 'test/**/*.js'],
+      src: ['system/src/**/*.js'],
       options: {
+        ignores: ['system/src/test/**'],
         globals: {
           jQuery: true,
           console: true,
@@ -118,7 +120,7 @@ module.exports = function( grunt ){
       }
     },
     qunit: {
-      src: ['test/**/*.html']
+      src: ['system/src/test/**/*.html']
     },
     replace: {
       build: {
@@ -199,7 +201,7 @@ module.exports = function( grunt ){
           cssImportIgnore: 'bootstrap/2.3.1/min.css, bootstrap/2.3.1/responsive/min.css',
           skipDirOptimize: true, // skip optimization on non-build files
           keepBuildDir: false, // delete the build directory before each run
-          removeCombined: true, // eliminate duplicate (combined) files from build
+          //removeCombined: true, // eliminate duplicate (combined) files from build
           preserveLicenseComments: false, // preserve only JSDoc-style @license
         }
       }
