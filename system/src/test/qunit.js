@@ -1,6 +1,6 @@
 /**
- * @summary Test Config
- * @module test
+ * @summary QUnit Config
+ * @module test/qunit
  * @since 0.0.2
  * @requires {@link initialize}
  * @description
@@ -17,7 +17,7 @@ if(require.config){
 	 * @since 0.0.2
 	 */
 	require.config({
-		baseUrl: '../lib',
+		baseUrl: '../../lib',
 		paths: {
 			qunit: '../../lib/qunit',
 			underscore:  '../../lib/underscore'
@@ -35,33 +35,36 @@ if(require.config){
 			} 
 		}
 	});
-	require(['../test/lib/initialize']);
+	require(['../test/qunit/initialize']);
 } else {
 	/**
 	 * @summary RequireJS via Node
 	 * @name CLI
 	 * @since 0.0.2
+	 * @todo replace unsupported shim, maintaining qunit.init behavior
 	 */
+	//var qunit = require('qunit');
 	var requirejs = require('requirejs');
+	//var underscore = require('underscore');
 	requirejs.config({
 		baseUrl: __dirname +'/../lib',
 		paths: {
 			qunit: '../../lib/qunit',
 			underscore:  '../../lib/underscore'
 		},
-		shim: {
-			qunit: {
-				exports: 'QUnit',
-				init: function(){
-					QUnit.config.autoload = false;
-					QUnit.config.autostart = false;
-				}
-			},
-			underscore: {
-				exports: '_'
-			} 
-		},
+		//shim: {
+		//	qunit: {
+		//		exports: 'QUnit',
+		//		init: function(){
+		//			QUnit.config.autoload = false;
+		//			QUnit.config.autostart = false;
+		//		}
+		//	},
+		//	underscore: {
+		//		exports: '_'
+		//	} 
+		//},
 		nodeRequire: require
 	});
-	requirejs(['../test/lib/initialize']);
+	requirejs(['../test/qunit/initialize']);
 }

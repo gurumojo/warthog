@@ -1,7 +1,7 @@
 {
-  "name": "example",
+  "name": "warthog",
   "version": "0.0.2",
-  "description": "example package",
+  "description": "An example package illustrating Grunt usage",
   "main": "system/src/main",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,6 +32,7 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-replace": "~0.5.1",
+    "grunt-template-jasmine-requirejs": "~0.1.8",
     "jsdoc": "~3.3.0",
     "semver": "~2.2.1",
     "stripcolorcodes": "~0.1.0"

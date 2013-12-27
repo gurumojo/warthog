@@ -1,12 +1,9 @@
 define([
 
-	'../lib/example'
+	'../test/jasmine/example'
 
 ], function(example){
 
 		// run tests
 		example.run();
-		// start QUnit
-		QUnit.load();
-		QUnit.start();
 });

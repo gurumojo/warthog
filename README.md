@@ -31,10 +31,16 @@ Example Package
 			- example.js (AMD object constructor)
 			- initialize.js (application bootstrap)
 		- test/ (unit and functional tests)
-			- main.js (test config)
-			- example.html (QUnit test runner)
-			- lib/ (test libraries)
-				- example.js (tests for src/lib/example.js)
+			- jasmine.js (test config)
+			- qunit.js (test config)
+			- jasmine/ (Jasmine tests)
+				- example.js (spec for src/lib/example.js)
+				- index.html (test runner)
+				- initialize.js (test harness)
+			- qunit/ (QUnit tests)
+				- example.js (spec for src/lib/example.js)
+				- index.html (test runner)
+				- initialize.js (test harness)
 
 
 -------

@@ -101,6 +101,20 @@ module.exports = function( grunt ){
         },
       }
     },
+    jasmine: {
+      src: {
+        options: {
+          keepRunner: true,
+          outfile: 'system/src/test/jasmine/index.html',
+          specs: 'system/src/test/jasmine/**/*.js',
+          template: require('grunt-template-jasmine-requirejs'),
+          templateOptions: {
+            requireConfigFile: 'system/src/test/jasmine.js'
+          }
+        },
+        //src: 'system/src/lib/**/*.js'
+      }
+    },
     jsdoc: {
       src: ['README.md', 'system/src/main.js', 'system/src/lib/**/*.js'],
       options: {
@@ -120,7 +134,7 @@ module.exports = function( grunt ){
       }
     },
     qunit: {
-      src: ['system/src/test/**/*.html']
+      src: ['system/src/test/qunit/**/*.html']
     },
     replace: {
       build: {
@@ -199,7 +213,7 @@ module.exports = function( grunt ){
             main: '../main'
           },
           cssImportIgnore: 'bootstrap/2.3.1/min.css, bootstrap/2.3.1/responsive/min.css',
-          skipDirOptimize: true, // skip optimization on non-build files
+          //skipDirOptimize: true, // skip optimization on non-build files
           keepBuildDir: false, // delete the build directory before each run
           //removeCombined: true, // eliminate duplicate (combined) files from build
           preserveLicenseComments: false, // preserve only JSDoc-style @license
@@ -223,8 +237,8 @@ module.exports = function( grunt ){
       }
     },
     watch: {
-      files: ['README.md', '<%= jshint.src %>'],
-      tasks: ['clean:doc', 'jsdoc', 'test']
+        files: ['README.md', '<%= jshint.src %>'],
+        tasks: ['test']
     }
   });
 
@@ -417,7 +431,7 @@ module.exports = function( grunt ){
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   //grunt.loadNpmTasks('grunt-contrib-imagemin');
-  //grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
@@ -425,9 +439,14 @@ module.exports = function( grunt ){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-replace');
 
+  grunt.registerTask('doc', [
+    'clean:doc',
+    'jsdoc'
+  ]);
   grunt.registerTask('test', [
     'csslint',
     'jshint',
+    'jasmine',
     'qunit'
   ]);
   grunt.registerTask('version', [
