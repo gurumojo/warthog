@@ -4,11 +4,12 @@
   "description": "An example package illustrating Grunt usage",
   "main": "system/src/main",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "system/src/bugfix.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zossz/warthog.git"
+    "url": "https://github.com/gurumojo/warthog.git"
   },
   "dependencies": {
     "requirejs": "~2.1.9",
