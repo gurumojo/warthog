@@ -1,51 +1,57 @@
-/**
- * Ranch Module
- */
 define([
 
-	'underscore', 'corral', 'pasture', 'appaloosa', 'clydesdale'
+	'underscore', 'Corral', 'Pasture', 'Wrangler'
 
-], function(_, corral, pasture, Appaloosa, Clydesdale){
+], function(_, Corral, Pasture, Wrangler){
 
 	/**
-	 * A collection of Horse collection objects
-	 *
-	 * @exports ranch
-	 * @version 0.0
+	 * @summary
+	 *  Horse Ranch
+	 * @exports
+	 *  ranch
+	 * @since
+	 *  0.0.1
+	 * @description
+	 *  A collection of Horse collection objects
 	 */
 	var ranch = {
 
 		/**
-		 * An indoor collection of Horse objects
+		 * @summary
+		 *  Horse Corral
+		 * @description
+		 *  An indoor collection of Horse objects
 		 */
-		corral: corral,
+		corral: new Corral(),
 
 		/**
-		 * An outdoor collection of Horse objects
+		 * @summary
+		 *  Horse Pasture
+		 * @description
+		 *  An outdoor collection of Horse objects
 		 */
-		pasture: pasture,
+		pasture: new Pasture(),
 
 		/**
-		 * Get a count of all Horses on the Ranch
-		 *
-		 * @return {number}
+		 * @summary
+		 *  Horse Wrangler
+		 * @description
+		 *  A Horse collection Wrangler object
+		 */
+		wrangler: new Wrangler(),
+
+		/**
+		 * @summary
+		 *  Horse Count
+		 * @return
+		 *  {number}
+		 * @description
+		 *  Get a count of all Horses on the Ranch
 		 */
 		count: function(){
 			return this.corral.size() + this.pasture.size();
-		},
-
-		/**
-		 * Set the default Horse collection (only once)
-		 *
-		 * @method
-		 * @return {object}
-		 */
-		initialize: _.once(function(){
-			this.corral.set('Appaloosa', new Appaloosa());
-			this.pasture.set('Clydesdale', new Clydesdale());
-			return this;
-		})
+		}
 	};
 
-	return ranch.initialize();
+	return ranch;
 });

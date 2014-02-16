@@ -1,9 +1,9 @@
 define([
 
-	'../test/jasmine/example'
+	'../test/jasmine/Example'
 
-], function(example){
+], function(Example){
 
 		// run tests
-		example.run();
+		Example.run();
 });

@@ -1,19 +1,27 @@
-define(['underscore'], function(_){
+define([
+
+	'underscore'
+
+], function(_){
 
 	/**
-	 * @summary Example Constructor
-	 * @requires {@link http://underscorejs.org/ underscore}
-	 * @classdesc Example.prototype
-	 * @exports Example
-	 * @version 0.0.1
-	 * @since 0.0.1
-	 * @constructor
+	 * @summary
+	 *  Example Constructor
+	 * @requires
+	 *  {@link http://underscorejs.org/ underscore}
+	 * @classdesc
+	 *  Example.prototype
+	 * @exports
+	 *  Example
+	 * @since
+	 *  0.0.1
 	 * @param
 	 *  {object} option - enumerated instance properties
 	 * @description
 	 *  This module returns a constructor of type Example. It accepts
 	 *  one argument: an object with properties that will be assigned
 	 *  to instance attributes using the same keys.
+	 * @constructor
 	 */
 	var Example = function Example(option){
 		_.extend(this, option);
@@ -22,24 +30,10 @@ define(['underscore'], function(_){
 	Example.prototype = {
 
 		/**
-		 * @summary Binomial Nomenclature
-		 * @since 0.0.1
-		 * @description This is the first part of a two part name.
-		 * @type {string}
-		 */
-		genus: null,
-
-		/**
-		 * @summary Binomial Nomenclature
-		 * @since 0.0.1
-		 * @description This is the second part of a two part name.
-		 * @type {string}
-		 */
-		species: null,
-
-		/**
-		 * @summary Dump Member Values
-		 * @since 0.0.1
+		 * @summary
+		 *  Dump Member Values
+		 * @since
+		 *  0.0.1
 		 * @description
 		 *  Display all object properties in a manner appropriate to
 		 *  the execution environment (e.g. {@link CLI} or {@link DOM}).
@@ -53,10 +47,14 @@ define(['underscore'], function(_){
 		},
 
 		/**
-		 * @summary Get Member Values
-		 * @since 0.0.1
-		 * @param {(string|string[])} key - instance member reference(s)
-		 * @return {array} instance member value(s)
+		 * @summary
+		 *  Get Member Values
+		 * @since
+		 *  0.0.1
+		 * @param
+		 *  {(string|string[])} key - instance member reference(s)
+		 * @return
+		 *  {array} instance member value(s)
 		 * @description
 		 *  Return the object property value(s) for the supplied key(s).
 		 *  The key parameter may be a string or an array of strings.
@@ -66,11 +64,16 @@ define(['underscore'], function(_){
 		},
 
 		/**
-		 * @summary Set Member Values
-		 * @since 0.0.1
-		 * @param {string} key - instance member reference
-		 * @param {*} value - instance member assignment
-		 * @return {boolean} instance updated
+		 * @summary
+		 *  Set Member Values
+		 * @since
+		 *  0.0.1
+		 * @param
+		 *  {string} key - instance member reference
+		 * @param
+		 *  {*} value - instance member assignment
+		 * @return
+		 *  {boolean} instance updated
 		 * @description
 		 *   Update the object property key with the supplied value.
 		 */
@@ -84,10 +87,14 @@ define(['underscore'], function(_){
 		},
 
 		/**
-		 * @summary Search Member Objects
-		 * @since 0.0.1
-		 * @param {object} option - member query hash
-		 * @return {array} object collection
+		 * @summary
+		 *  Search Member Objects
+		 * @since
+		 *  0.0.1
+		 * @param
+		 *  {object} option - member query hash
+		 * @return
+		 *  {array} object collection
 		 * @description
 		 *  Find and return a collection of objects with properties
 		 *  matching the supplied query object key/value pairs.

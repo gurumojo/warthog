@@ -1,11 +1,11 @@
 define([
 
-	'../qunit/example'
+	'../qunit/Example'
 
-], function(example){
+], function(Example){
 
 		// run tests
-		example.run();
+		Example.run();
 		// start QUnit
 		QUnit.load();
 		QUnit.start();
