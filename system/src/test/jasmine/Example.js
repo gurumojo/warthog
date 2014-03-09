@@ -5,27 +5,45 @@ define([
 
 ], function(Example){
 
-	var run = function(){
-		describe('module', function(){
-			it('exports an Example constructor function', function(){
+	function run(){
+		describe('Example', function(){
+			it('exports an Example constructor', function(){
 				expect(typeof Example).toBe('function');
 			});
-		});
-		describe('constructor', function(){
-			it('returns an Example instance', function(){
-				expect(typeof new Example()).toBe('object');
+			describe('constructor', function(){
+				beforeEach(function(){
+					this.example = new Example({name: 'example'});
+				});
+				it('sets optional properties', function(){
+					expect(typeof this.example.name).toBe('string');
+					expect(this.example.name).toBe('example');
+				});
+				it('returns {Example} example instance', function(){
+					expect(typeof this.example).toBe('object');
+					expect(this.example instanceof Example).toEqual(true);
+				});
 			});
-		});
-		describe('members', function(){
-			it('object.get() returns optional properties', function(){
-				var example = new Example({name: 'example'});
-				expect(example.get('name')[0]).toBe('example');
+			describe('member', function(){
+				describe('*', function(){
+					it('variable instance members', function(){
+						var instance = new Example();
+						var member = !_.every(instance, _.isFunction);
+						expect(member).toEqual(false);
+					});
+				});
 			});
-			it('object.set() returns result boolean', function(){
-				var example = new Example({name: 'warthog'});
-				expect(example.get('name')[0]).toBe('warthog');
-				expect(example.set('name', 'example')).toEqual(true);
-				expect(example.get('name')[0]).toBe('example');
+			describe('method', function(){
+				beforeEach(function(){
+					this.example = new Example({name: 'example'});
+				});
+				describe('dump', function(){
+					it('logs to console', function(){
+						//expect(typeof this.example.dump).toBe('function');
+					});
+					it('returns {undefined}', function(){
+						expect(typeof this.example.dump()).toBe('undefined');
+					});
+				});
 			});
 		});
 	};

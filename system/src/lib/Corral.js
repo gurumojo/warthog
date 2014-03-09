@@ -24,9 +24,9 @@ define([
 	 *  manager for Horse objects which augments Cache.
 	 * @constructor
 	 */
-	var Corral = function Corral(){
+	function Corral(){
 		this.cache = {};
-	};
+	}
 
 	Corral.prototype = {
 

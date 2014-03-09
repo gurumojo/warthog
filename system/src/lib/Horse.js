@@ -17,9 +17,9 @@ define([
 	 *  {string} name - customized reference
 	 * @constructor
 	 */
-	var Horse = function Horse(name){
+	function Horse(name){
 		this.name = name || 'Mr. Ed';
-	};
+	}
 
 	Horse.prototype = new Mammal();
 

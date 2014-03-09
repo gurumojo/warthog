@@ -22,9 +22,9 @@ define([
 	 *  Organism type.
 	 * @constructor
 	 */
-	var Mammal = function Mammal(option){
+	function Mammal(option){
 		Organism.call(this, option);
-	};
+	}
 
 	/**
 	 * @summary

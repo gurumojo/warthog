@@ -24,9 +24,9 @@ define([
 	 *  Human type.
 	 * @constructor
 	 */
-	var Wrangler = function Wrangler(option){
+	function Wrangler(option){
 		_.extend(this, option);
-	};
+	}
 
 	Wrangler.prototype = {
 

@@ -17,10 +17,10 @@ define([
 	 *  {string} name - customized reference
 	 * @constructor
 	 */
-	var Appaloosa = function Appaloosa(name){
+	function Appaloosa(name){
 		this.name = name || 'horse';
 		this.type = 'stock';
-	};
+	}
 
 	Appaloosa.prototype = Horse.prototype;
 

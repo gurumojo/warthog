@@ -20,71 +20,105 @@ define([
 	 *  private collection manager with accessor and mutator methods.
 	 * @constructor
 	 */
-	var Cache = function Cache(){
-		this.cache = {};
-	};
+	function Cache(){}
+
+	/**
+	 * @summary
+	 *  Storage
+	 * @description
+	 *  A private collection hash.
+	 */
+	var storage = {};
 
 	Cache.prototype = {
 
 		/**
 		 * @summary
-		 *  Cleaner
+		 *  Clean Value Cache
 		 * @return
 		 *  {boolean} success
 		 * @description
 		 *  Purge all object members
 		 */
 		clean: function(){
-			return _.isEmpty(cache = {});
+			//return _.isEmpty(this.cache = {});
+			return _.isEmpty(storage = {});
 		},
 
 		/**
 		 * @summary
-		 *  Counter
+		 *  Count Value Cache
 		 * @return
 		 *  {number} size
 		 * @description
 		 *  Get the size of the object collection
 		 */
 		count: function(){
-			return _.size(this.cache);
+			//return _.size(this.cache);
+			return _.size(storage);
 		},
 
 		/**
 		 * @summary
-		 *  Getter
+		 *  Get Member Values
+		 * @since
+		 *  0.0.1
 		 * @param
-		 *  {string} member - object attribute descriptor
+		 *  {(string|string[])} key - instance member reference(s)
 		 * @return
-		 *  {object} value
+		 *  {array} instance member value(s)
 		 * @description
-		 *  Get object member values by name
+		 *  Return the cache object value(s) for the supplied key(s).
+		 *  The key parameter may be a string or an array of strings.
 		 */
-		get: function(member){
-			if(!this.cache[member]){
-				throw new RangeError('member not found');
-			}
-			return this.cache[member];
+		get: function(key){
+			//return _.values(_.pick(this.cache, key));
+			return _.values(_.pick(storage, key));
 		},
 
 		/**
 		 * @summary
-		 *  Setter
+		 *  Set Member Values
+		 * @since
+		 *  0.0.1
 		 * @param
-		 *  {string} member - attribute descriptor
+		 *  {string} key - instance member reference
 		 * @param
-		 *  {object} value - attribute modification
+		 *  {*} value - instance member assignment
 		 * @return
-		 *  {object} value
+		 *  {*} instance member value
 		 * @description
-		 *  Set object member values by name
+		 *   Update the object property key with the supplied value.
 		 */
-		set: function(member, value){
-			if(typeof member !== 'string'){
+		set: function(key, value){
+			if(typeof key !== 'string'){
 				throw new TypeError('string parameter required');
 			}
-			this.cache[member] = value;
-			return this.cache[member];
+			//this.cache[key] = value;
+			//return this.cache[key];
+			storage[key] = value;
+			return storage[key];
+		},
+
+		/**
+		 * @summary
+		 *  Filter Member Values
+		 * @since
+		 *  0.0.2
+		 * @param
+		 *  {object} option - member key/value hash
+		 * @return
+		 *  {array} value collection
+		 * @description
+		 *  Find and return a collection of objects with properties
+		 *  matching the supplied query object key/value pairs.
+		 */
+		filter: function(option){
+			if(typeof option !== 'object'){
+				throw new TypeError('object parameter required');
+			}
+			//return _.where(this.cache, option);
+			return _.where(storage, option);
 		}
 	};
 

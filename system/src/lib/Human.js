@@ -24,9 +24,9 @@ define([
 	 *  Mammal type.
 	 * @constructor
 	 */
-	var Human = function Human(option){
+	function Human(option){
 		_.extend(this, option);
-	};
+	}
 
 	Human.prototype = {
 

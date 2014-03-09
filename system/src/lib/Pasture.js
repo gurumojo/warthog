@@ -24,9 +24,9 @@ define([
 	 *  manager for Horse objects which extends Cache.
 	 * @constructor
 	 */
-	var Pasture = function Pasture(){
+	function Pasture(){
 		this.cache = {};
-	};
+	}
 
 	Pasture.prototype = {
 

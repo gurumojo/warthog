@@ -12,11 +12,11 @@ define([
 	 * @constructor
 	 * @param {object} option enumerated static properties
 	 */
-	var Organism = function Organism(option){
+	function Organism(option){
 		_.each(option, function(value, key){
 			this[key] = value;
 		}, this);
-	};
+	}
 
 	Organism.prototype = {
 

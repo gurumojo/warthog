@@ -1,9 +1,11 @@
 define([
 
-	'../test/jasmine/Example'
+	'../test/jasmine/Example',
+	'../test/jasmine/Cache'
 
-], function(Example){
+], function(Example, Cache){
 
 		// run tests
 		Example.run();
+		Cache.run();
 });

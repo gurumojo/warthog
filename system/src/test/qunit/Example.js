@@ -5,31 +5,41 @@ define([
 
 ], function(Example){
 
-	var run = function(){
-		QUnit.module('module');
-		test('exports an Example constructor function', function(){
-			equal(typeof Example, 'function',
-				'typeof Example == "function"');
+	function run(){
+		QUnit.module('Example: module');
+		test('exports an Example constructor', function(){
+			equal(typeof Example, 'function', 'typeof Example == "function"');
 		});
-		QUnit.module('constructor');
-		test('returns an Example instance', function(){
-			equal(typeof new Example(), 'object',
-				'typeof new Example() == "object"');
+		QUnit.module('Example: constructor', {
+			setup: function(){
+				this.example = new Example({name: 'example'});
+			}
 		});
-		QUnit.module('members');
-		test('object.get() returns optional properties', function(){
-			var example = new Example({name: 'example'});
-			equal(example.get('name')[0], 'example',
-				'new Example({name: "example"}).get("name")[0] == "example"');
+		test('sets optional properties', function(){
+			equal(typeof this.example.name, 'string', 'typeof example == "string"');
+			equal(this.example.name, 'example', 'example.name == "example"');
 		});
-		test('object.set() returns result boolean', function(){
-			var example = new Example({name: 'warthog'});
-			equal(example.get('name')[0], 'warthog',
-				'example.get("name")[0] == "warthog"');
-			strictEqual(example.set('name', 'example'), true,
-				'example.set("name", "example") === true');
-			equal(example.get('name')[0], 'example',
-				'example.get("name")[0] == "example"');
+		test('returns {Example} example instance', function(){
+			equal(typeof this.example, 'object', 'typeof example == "object"');
+			strictEqual(this.example instanceof Example, true, 'example instanceof Example');
+		});
+		QUnit.module('Example: member');
+		test('variable instance members', function(){
+			var instance = new Example();
+			var member = !_.every(instance, _.isFunction);
+			strictEqual(member, false, 'typeof example.* == "function"');
+		});
+		QUnit.module('Example: method', {
+			setup: function(){
+				this.example = new Example({name: 'example'});
+			}
+		});
+		test('dump: logs to console', function(){
+			ok(true);
+		});
+		test('dump: returns {undefined}', function(){
+			equal(typeof this.example.dump, 'function', 'typeof example.dump == "function"');
+			equal(typeof this.example.dump(), 'undefined', 'typeof example.dump() == "undefined"');
 		});
 	};
 	return {run: run};
