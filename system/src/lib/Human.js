@@ -28,7 +28,7 @@ define([
 		_.extend(this, option);
 	}
 
-	Human.prototype = {
+	Human.prototype = _.extend(new Mammal(), {
 
 		/**
 		 * @summary
@@ -53,7 +53,7 @@ define([
 		wash: function(){
 			return true;
 		}
-	};
+	});
 
 	return Human;
 });

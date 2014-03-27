@@ -1,8 +1,8 @@
 define([
 
-	'underscore', 'Human'
+	'underscore', 'Human', 'Horse'
 
-], function(_, Human){
+], function(_, Human, Horse){
 
 	/**
 	 * @summary
@@ -42,7 +42,7 @@ define([
 		 *  tame a wild equine.
 		 */
 		break: function(horse){
-			if(!horse instanceof Horse){
+			if(!(horse instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
 			return true;
@@ -60,7 +60,7 @@ define([
 		 *  maintain a tame equine.
 		 */
 		ride: function(horse){
-			if(!horse instanceof Horse){
+			if(!(horse instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
 			return true;

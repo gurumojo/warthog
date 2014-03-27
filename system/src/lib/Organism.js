@@ -5,12 +5,15 @@ define([
 ], function(_){
 
 	/**
-	 * Create a new object with supplied attributes
-	 *
-	 * @exports Organism
-	 * @version 0.0
+	 * @summary
+	 *  Create a new object with supplied attributes
+	 * @exports
+	 *  Organism
+	 * @since
+	 *  0.0.1
 	 * @constructor
-	 * @param {object} option enumerated static properties
+	 * @param
+	 *  {object} option - enumerated static properties
 	 */
 	function Organism(option){
 		_.each(option, function(value, key){

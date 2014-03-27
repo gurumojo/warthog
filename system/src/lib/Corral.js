@@ -24,9 +24,15 @@ define([
 	 *  manager for Horse objects which augments Cache.
 	 * @constructor
 	 */
-	function Corral(){
-		this.cache = {};
-	}
+	function Corral(){}
+
+	/**
+	 * @summary
+	 *  Storage
+	 * @description
+	 *  A private collection hash.
+	 */
+	var storage = {};
 
 	Corral.prototype = {
 
@@ -46,11 +52,11 @@ define([
 			if(typeof member !== 'string'){
 				throw new TypeError('string parameter required');
 			}
-			if(!value instanceof Horse){
+			if(!(value instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
-			this.cache[member] = value;
-			return this.cache[member];
+			storage[member] = value;
+			return storage[member];
 		}
 
 	};

@@ -25,7 +25,7 @@ define([
 	 * @constructor
 	 */
 	function Pasture(){
-		this.cache = {};
+		storage = {};
 	}
 
 	Pasture.prototype = {
@@ -46,11 +46,11 @@ define([
 			if(typeof member !== 'string'){
 				throw new TypeError('string parameter required');
 			}
-			if(!value instanceof Horse){
+			if(!(value instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
-			this.cache[member] = value;
-			return this.cache[member];
+			storage[member] = value;
+			return storage[member];
 		}
 
 	};

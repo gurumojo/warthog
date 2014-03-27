@@ -26,6 +26,8 @@ define([
 		Organism.call(this, option);
 	}
 
+	Mammal.prototype = new Organism();
+
 	/**
 	 * @summary
 	 *  Drink
