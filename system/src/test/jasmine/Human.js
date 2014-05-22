@@ -18,7 +18,7 @@ define([
 					expect(typeof this.human.name).toBe('string');
 					expect(this.human.name).toBe('example');
 				});
-				it('returns {Human} human instance', function(){
+				it('returns {Human} new instance', function(){
 					expect(typeof this.human).toBe('object');
 					expect(this.human instanceof Human).toEqual(true);
 				});

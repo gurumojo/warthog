@@ -18,7 +18,7 @@ define([
 					expect(typeof this.appaloosa.name).toBe('string');
 					expect(this.appaloosa.name).toBe('example');
 				});
-				it('returns {Appaloosa} appaloosa instance', function(){
+				it('returns {Appaloosa} new instance', function(){
 					expect(typeof this.appaloosa).toBe('object');
 					expect(this.appaloosa instanceof Appaloosa).toEqual(true);
 				});

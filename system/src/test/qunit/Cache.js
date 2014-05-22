@@ -52,7 +52,7 @@ define([
 			strictEqual(result[0], 1, 'result[0] === 1');
 			strictEqual(result[1], 2, 'result[1] === 2');
 		});
-		test('get: returns {array} cache property value(s)', function(){
+		test('get: returns {array} property value(s)', function(){
 			var result = this.cache.get();
 			equal(typeof result, 'object', 'typeof result == "object"');
 			equal(typeof result.length, 'number', 'typeof result.length == "number"');
@@ -76,7 +76,7 @@ define([
 			deepEqual(this.cache.set('foo', []), [], 'cache.set("foo", []) == []');
 			equal(this.cache.set('foo', Foo), Foo, 'cache.set("foo", Foo) == Foo');
 		});
-		test('set: returns {*} cache property value', function(){
+		test('set: returns {*} property value', function(){
 			function Foo(){}
 			var foo = new Foo();
 			equal(this.cache.set('foo', foo), foo, 'cache.set("foo", foo) == foo');
@@ -88,7 +88,7 @@ define([
 			equal(typeof result, 'object', 'typeof result == "object"');
 			equal(typeof result.length, 'number', 'typeof result.length == "number"');
 		});
-		test('filter: returns {array} cache property value(s)', function(){
+		test('filter: returns {array} property value(s)', function(){
 			var result;
 			var foo = {
 				uno: 1,

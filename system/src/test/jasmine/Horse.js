@@ -18,7 +18,7 @@ define([
 					expect(typeof this.horse.name).toBe('string');
 					expect(this.horse.name).toBe('example');
 				});
-				it('returns {Horse} horse instance', function(){
+				it('returns {Horse} new instance', function(){
 					expect(typeof this.horse).toBe('object');
 					expect(this.horse instanceof Horse).toEqual(true);
 				});

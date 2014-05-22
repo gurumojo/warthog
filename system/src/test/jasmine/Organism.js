@@ -18,7 +18,7 @@ define([
 					expect(typeof this.organism.name).toBe('string');
 					expect(this.organism.name).toBe('example');
 				});
-				it('returns {Organism} organism instance', function(){
+				it('returns {Organism} new instance', function(){
 					expect(typeof this.organism).toBe('object');
 					expect(this.organism instanceof Organism).toEqual(true);
 				});

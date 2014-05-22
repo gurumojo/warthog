@@ -11,7 +11,7 @@ define([
 				expect(typeof Cache).toBe('function');
 			});
 			describe('constructor', function(){
-				it('returns {Cache} cache instance', function(){
+				it('returns {Cache} new instance', function(){
 					var cache = new Cache();
 					expect(typeof cache).toBe('object');
 					expect(cache instanceof Cache).toEqual(true);
@@ -60,7 +60,7 @@ define([
 						expect(result[0]).toEqual(1);
 						expect(result[1]).toEqual(2);
 					});
-					it('returns {array} cache property value(s)', function(){
+					it('returns {array} property value(s)', function(){
 						result = this.cache.get();
 						expect(typeof result).toBe('object');
 						expect(typeof result.length).toBe('number');
@@ -86,7 +86,7 @@ define([
 						expect(this.cache.set('foo', [])).toEqual([]);
 						expect(this.cache.set('foo', Foo)).toBe(Foo);
 					});
-					it('returns {*} cache property value', function(){
+					it('returns {*} property value', function(){
 						function Foo(){}
 						var foo = new Foo();
 						expect(this.cache.set('foo', foo)).toBe(foo);
@@ -101,7 +101,7 @@ define([
 						expect(typeof result).toBe('object');
 						expect(typeof result.length).toBe('number');
 					});
-					it('returns {array} cache property value(s)', function(){
+					it('returns {array} property value(s)', function(){
 						var foo = {
 							uno: 1,
 							dos: 2,

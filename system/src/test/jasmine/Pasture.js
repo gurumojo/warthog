@@ -11,7 +11,7 @@ define([
 				expect(typeof Pasture).toBe('function');
 			});
 			describe('constructor', function(){
-				it('returns {Pasture} pasture instance', function(){
+				it('returns {Pasture} new instance', function(){
 					var pasture = new Pasture();
 					expect(typeof pasture).toBe('object');
 					expect(pasture instanceof Pasture).toEqual(true);
@@ -60,7 +60,7 @@ define([
 						expect(this.horse instanceof Horse).toEqual(true);
 						expect(this.pasture.set('foo', this.horse)).toBe(this.horse);
 					});
-					it('returns {*} pasture property value', function(){
+					it('returns {*} property value', function(){
 						expect(this.pasture.set('foo', this.horse)).toBe(this.horse);
 					});
 				});

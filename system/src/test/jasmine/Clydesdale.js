@@ -18,7 +18,7 @@ define([
 					expect(typeof this.clydesdale.name).toBe('string');
 					expect(this.clydesdale.name).toBe('example');
 				});
-				it('returns {Clydesdale} clydesdale instance', function(){
+				it('returns {Clydesdale} new instance', function(){
 					expect(typeof this.clydesdale).toBe('object');
 					expect(this.clydesdale instanceof Clydesdale).toEqual(true);
 				});

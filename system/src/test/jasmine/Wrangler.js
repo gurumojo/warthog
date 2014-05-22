@@ -18,7 +18,7 @@ define([
 					expect(typeof this.wrangler.name).toBe('string');
 					expect(this.wrangler.name).toBe('example');
 				});
-				it('returns {Wrangler} wrangler instance', function(){
+				it('returns {Wrangler} new instance', function(){
 					expect(typeof this.wrangler).toBe('object');
 					expect(this.wrangler instanceof Wrangler).toEqual(true);
 				});

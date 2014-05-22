@@ -18,7 +18,7 @@ define([
 					expect(typeof this.example.name).toBe('string');
 					expect(this.example.name).toBe('example');
 				});
-				it('returns {Example} example instance', function(){
+				it('returns {Example} new instance', function(){
 					expect(typeof this.example).toBe('object');
 					expect(this.example instanceof Example).toEqual(true);
 				});

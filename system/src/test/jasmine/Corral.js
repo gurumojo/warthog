@@ -11,7 +11,7 @@ define([
 				expect(typeof Corral).toBe('function');
 			});
 			describe('constructor', function(){
-				it('returns {Corral} corral instance', function(){
+				it('returns {Corral} new instance', function(){
 					var corral = new Corral();
 					expect(typeof corral).toBe('object');
 					expect(corral instanceof Corral).toEqual(true);
@@ -60,7 +60,7 @@ define([
 						expect(this.horse instanceof Horse).toEqual(true);
 						expect(this.corral.set('foo', this.horse)).toBe(this.horse);
 					});
-					it('returns {*} corral property value', function(){
+					it('returns {*} property value', function(){
 						expect(this.corral.set('foo', this.horse)).toBe(this.horse);
 					});
 				});
