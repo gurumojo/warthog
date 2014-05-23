@@ -19,7 +19,9 @@ if(require.config){
 	require.config({
 		baseUrl: '../build/0.0.0/src/lib',
 		paths: {
-			//angular:     '../../lib/angular',
+			angular:     '../../lib/angular',
+			ngDefine:    '../../lib/ngDefine',
+			ngParse:     '../../lib/ngParse',
 			//backbone:    '../../lib/backbone',
 			//bootstrap:   '../../lib/bootstrap',
 			//datetime:    '../../lib/date.format',
@@ -33,6 +35,10 @@ if(require.config){
 			//xml2json:    '../../lib/xml2json'
 		},
 		shim: {
+			'angular': {
+				//deps: [ 'jquery' ],
+				exports: 'angular'
+			},
 			'backbone': {
 				deps: [ 'underscore', 'jquery' ],
 				exports: 'Backbone'
@@ -48,7 +54,11 @@ if(require.config){
 			}
 		}
 	});
-	require(['initialize']);
+	require(['ngDefine', 'angular'], function(ngDefine, angular){
+		require(['ngApp'], function(){
+			angular.bootstrap(document.body, ['ng-app']);
+		});
+	});
 } else {
 	/**
 	 * @summary RequireJS via Node

@@ -8,10 +8,8 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "1.2.x",
     "angular-route": "1.2.x",
-    "requirejs": "~2.1.11",
     "requirejs-angular-define": "~1.1.0",
     "requirejs-i18n": "~2.0.4",
-    "requirejs-text": "~2.0.12",
-    "underscore": "~1.6.0"
+    "requirejs-text": "~2.0.12"
   }
 }

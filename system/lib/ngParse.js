@@ -1,0 +1,1 @@
+../../bower_components/requirejs-angular-define/src/ngParse.js
