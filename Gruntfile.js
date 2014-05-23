@@ -16,7 +16,7 @@ module.exports = function( grunt ){
     },
     clean: {
       doc: ['system/doc/**/*', '!system/doc/.gitignore'],
-      dot: ['build/<%= pkg.version %>/**/.*.sw[a-z]'],
+      dot: ['build/<%= pkg.version %>/**/.*.sw[a-z]', 'build/<%= pkg.version %>/**/.gitignore'],
       src: ['build/<%= pkg.version %>*', 'instance/<%= pkg.version %>.html']
     },
     compress: {

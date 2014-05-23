@@ -1,21 +1,18 @@
 {
   "name": "warthog",
-  "version": "0.0.2",
-  "description": "An example package illustrating Grunt usage",
+  "version": "0.1.0",
+  "description": "A full stack application template for Node, Grunt, Bower, RequireJS and AngularJS usage.",
   "main": "system/src/main",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "system/src/bugfix.sh"
+    "test": "grunt test",
+    "postinstall": "bower install && system/src/bugfix.sh"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/gurumojo/warthog.git"
   },
-  "dependencies": {
-    "requirejs": "~2.1.9",
-    "underscore": "~1.5.2"
-  },
   "devDependencies": {
+    "bower": "^1.3.3",
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
     "grunt-contrib-clean": "~0.5.0",
