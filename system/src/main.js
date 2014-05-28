@@ -19,9 +19,10 @@ if(require.config){
 	require.config({
 		baseUrl: '../build/0.0.0/src/lib',
 		paths: {
-			angular:     '../../lib/angular',
-			ngDefine:    '../../lib/ngDefine',
-			ngParse:     '../../lib/ngParse',
+			'angular':       '../../lib/angular',
+			'angular-route': '../../lib/angular-route',
+			'ngDefine':      '../../lib/ngDefine',
+			'ngParse':       '../../lib/ngParse',
 			//backbone:    '../../lib/backbone',
 			//bootstrap:   '../../lib/bootstrap',
 			//datetime:    '../../lib/date.format',
@@ -31,13 +32,16 @@ if(require.config){
 			//jquery:      '../../lib/jquery',
 			//loader:      '../../lib/loader',
 			//swipe:       '../../lib/swipe',
-			underscore:  '../../lib/underscore',
+			'underscore':    '../../lib/underscore',
 			//xml2json:    '../../lib/xml2json'
 		},
 		shim: {
 			'angular': {
 				//deps: [ 'jquery' ],
 				exports: 'angular'
+			},
+			'angular-route': {
+				deps: [ 'angular' ],
 			},
 			'backbone': {
 				deps: [ 'underscore', 'jquery' ],
@@ -55,8 +59,8 @@ if(require.config){
 		}
 	});
 	require(['ngDefine', 'angular'], function(ngDefine, angular){
-		require(['ngApp'], function(){
-			angular.bootstrap(document.body, ['ng-app']);
+		require(['example/router'], function(){
+			angular.bootstrap(document, ['example']);
 		});
 	});
 } else {

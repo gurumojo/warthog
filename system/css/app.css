@@ -1,0 +1,125 @@
+/* app css stylesheet */
+
+.menu {
+	list-style: none;
+	border-bottom: 0.1em solid black;
+	margin-bottom: 2em;
+	padding: 0 0 0.5em;
+}
+
+.menu:before {
+	content: '\2773';
+}
+
+.menu:after {
+	content: '\2772';
+}
+
+.menu > li {
+	display: inline;
+}
+
+.menu > li:before {
+	content: '|';
+	padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+	content: '';
+	padding: 0;
+}
+
+.debug {
+	margin: 1em 0;
+	border: 1px solid black;
+}
+
+.debug.opened > header:before { 
+    content: '\21D3 '; 
+	display: inline-block;
+	width: 1em;
+}
+
+.debug.opened > header {
+	border-bottom: 1px solid black;
+}
+
+.debug.opened > section {
+	display: block;
+}
+
+.debug.closed > header:before { 
+    content: '\21D2 '; 
+	display: inline-block;
+	width: 1em;
+}
+
+.debug.closed > header {
+	border-bottom: 0;
+}
+
+.debug.closed > section {
+	display: none;
+}
+
+.debug > section {
+	background-color: rgb(250,250,250);
+}
+
+.debug > section > pre {
+	overflow: hidden;
+	margin: 0;
+}
+
+.debug > header {
+	background-color: black;
+	color: white;
+	padding: .1em .3em;
+	cursor: pointer;
+}
+
+.debug > section {
+	padding: .3em;
+}
+
+footer.footer {
+	border-top: 0.1em solid black;
+	margin-top: 2em;
+	padding: 0.5em 0;
+}
+
+[input-editor], [input-text-editor] {
+	width: 15em;
+	height: 1.5em;
+}
+
+[textarea-editor] {
+	width: 25em;
+	height: 10em;
+}
+
+[input-editor], [input-text-editor], [textarea-editor] {
+	cursor: text;
+	overflow: hidden;
+	line-height: 1.5em;
+	font-size: 1em;
+	border: solid 1px #ddd;
+	background-color: rgb(250,250,250);
+	margin: 1em 0;
+	padding: 0 .25em;
+}
+
+[input-editor] > input, [input-text-editor] > input, [textarea-editor] > textarea {
+	width: 100%;
+	height: 100%;
+	line-height: 1.5em;
+	font-size: 1em;
+	border: 0;
+	margin: 0 0 0 -.25em;
+	padding: 0 .25em;
+}
+
+[textarea-editor] > textarea {
+	resize: none;
+}
+
