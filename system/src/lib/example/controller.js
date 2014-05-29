@@ -33,7 +33,7 @@ ngDefine('example.controller', [
 			};
 			$scope.debug = {
 				location: $location.url(),
-				params: $route.current && $route.current['params'],
+				params: $route.current && $route.current.params,
 				route: $route.routes[$location.url().split('?')[0]],
 				scope: {
 					content: $scope.content,
@@ -67,7 +67,7 @@ ngDefine('example.controller', [
 				$scope.time = new Date().toISOString();
 				$scope.user = angular.copy(session.user);
 				$scope.update();
-			};
+			}
 			$scope.fetch = function(){
 				session.fetch().then(success);
 			};

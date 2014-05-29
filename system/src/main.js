@@ -17,7 +17,7 @@ if(require.config){
 	 * @since 0.0.1
 	 */
 	require.config({
-		baseUrl: '../build/0.0.0/src/lib',
+		baseUrl: '../build/0.1.0/src/lib',
 		paths: {
 			'angular':       '../../lib/angular',
 			'angular-route': '../../lib/angular-route',

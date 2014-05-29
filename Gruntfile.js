@@ -72,7 +72,8 @@ module.exports = function( grunt ){
           'qualified-headings': false,
           'unique-headings': false,
           'unqualified-attributes': false,
-          'vendor-prefix': false
+          'vendor-prefix': false,
+          'box-model': false
         },
         src: ['system/css/**/*.css']
       }

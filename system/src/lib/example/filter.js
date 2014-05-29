@@ -21,7 +21,7 @@ ngDefine('example.filter', [
 		function( meta ){
 			return function( text ){
 				return String(text).replace(/\%VERSION\%/mg, meta.version);
-			}
+			};
 		}]
 	
 	);

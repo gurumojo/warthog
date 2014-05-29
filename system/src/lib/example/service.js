@@ -19,17 +19,19 @@ ngDefine('example.service', [
 		 * @return
 		 *  {object} meta instance
 		 */
-		function(){ return {
-			author: 'user@example.net',
-			description: 'skeleton application',
-			title: 'example',
-			url: {
-				base: '../build/0.0.0/',
-				login: 'json/user/login',
-				logout: 'json/user/logout'
-			},
-			version: '0.0.0'
-		}}
+		function(){
+			return {
+				author: 'user@example.net',
+				description: 'skeleton application',
+				title: 'example',
+				url: {
+					base: '../build/0.0.0/',
+					login: 'json/user/login',
+					logout: 'json/user/logout'
+				},
+				version: '0.0.0'
+			};
+		}
 
 		//$http({
 		//	method: $scope.method,
@@ -62,7 +64,9 @@ ngDefine('example.service', [
 			var crypto = {};
 			$http.get(meta.url.base +'lib/crypt/md5.js').then(
 				function(xhr){
-					crypto.hash = Function(xhr.data)();
+					/* jshint -W054 */
+					crypto.hash = new Function(xhr.data)();
+					/* jshint +W054 */
 				},
 				function(xhr){
 					console.log(xhr);
@@ -89,7 +93,9 @@ ngDefine('example.service', [
 			var parser = {};
 			$http.get(meta.url.base +'lib/x2js/xml2json.js').
 				success(function(data){
-					parser.x2js = Function(data)();
+					/* jshint -W054 */
+					parser.x2js = new Function(data)();
+					/* jshint +W054 */
 				}).
 				error(function(data, status){
 					console.log(data);
