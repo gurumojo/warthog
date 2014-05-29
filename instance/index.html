@@ -2,49 +2,26 @@
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<meta name="description" content="Example Package" />
+		<meta name="author" content="Software Developer" />
+		<title>Example</title>
+
+		<link rel="apple-touch-icon" href="../build/0.0.0/img/icon.png" />
+		<link rel="shortcut icon" href="../build/0.0.0/img/favicon.ico" />
+		<link rel="stylesheet" href="../build/0.0.0/css/main.css" />
+
 		<!--[if lt IE 9]>
 			<script src="../build/0.0.0/lib/polyfill/html5shiv.js"></script>
 			<script src="../build/0.0.0/lib/polyfill/json3.js"></script>
 		<![endif]-->
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="format-detection" content="telephone=no" />
-
-		<title>Example</title>
-		<meta name="description" content="Example Package" />
-		<meta name="author" content="Software Developer" />
-
-		<link rel="apple-touch-icon" href="../build/0.0.0/img/icon.png" />
-		<link rel="shortcut icon" href="../build/0.0.0/img/favicon.ico" />
-		<link rel="stylesheet" href="../build/0.0.0/css/app.css" />
 	</head>
-
-	<body class="container">
-		<header role="banner" class="navbar navbar-static-top">
-			<nav class="navbar-inner">
-				<ul class="nav menu">
-					<li><a href="#/home">home</a></li>
-					<li><a href="#/login">login</a></li>
-					<li><a href="#/other">other</a></li>
-					<li><a target="_blank" href="../build/0.0.0/src/test/jasmine/index.html">test</a></li>
-				</ul>
-			</nav>
-		</header>
-
-		<section role="main" class="container" aria-live="assertive" aria-atomic="true">
-			<div ng-view>
-				<header id="header"></header>
-				<section id="content">
-					<div class="splash">
-						<img src="../build/0.0.0/img/loading.gif" alt="Loading..." />
-					</div>
-				</section>
-				<footer id="footer"></footer>
-			</div>
-		</section>
-
-		<footer role="contentinfo" class="footer">
-			<div app-version></div>
-		</footer>
+	<body>
+		<header app-navigation role="banner"></header>
+		<section ng-view role="main" aria-live="assertive" aria-atomic="true"></section>
+		<footer app-footer role="contentinfo"></footer>
 
 		<script data-main="../build/0.0.0/src/main" src="../build/0.0.0/lib/require.js"></script>
 		<noscript><p>JavaScript Required: please adjust your browser settings.</p></noscript>

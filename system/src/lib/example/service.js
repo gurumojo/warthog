@@ -25,8 +25,8 @@ ngDefine('example.service', [
 			title: 'example',
 			url: {
 				base: '../build/0.0.0/',
-				login: 'src/json/user/login',
-				logout: 'src/json/user/logout'
+				login: 'json/user/login',
+				logout: 'json/user/logout'
 			},
 			version: '0.0.0'
 		}}

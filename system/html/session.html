@@ -1,0 +1,67 @@
+<div>
+	<form name="auth" ng-hide="active" novalidate>
+		<legend>{{legend}}</legend>
+		<input name="username" placeholder="username" 
+			type="text" ng-model="user.username" required />
+		<label for="username" class="control-label">
+			<span class="error" ng-show="auth.username.$error.required">*</span>
+		</label><br />
+		<input name="password" placeholder="password" 
+			type="password" ng-model="user.password" required />
+		<label for="password" class="control-label">
+			<span class="error" ng-show="auth.password.$error.required">*</span>
+		</label><br />
+		<input name="session" value="{{active}}" type="hidden" />
+		<button ng-click="login()" ng-disabled="auth.$invalid">login</button>
+		<button ng-click="reset()" ng-disabled="unchanged()">undo</button>
+		<hr />
+		<pre>valid = {{ auth.$valid | json }}</pre>
+		<pre>dirty = {{ auth.$dirty | json }}</pre>
+		<pre>username = {{ auth.username.$error | json }}</pre>
+		<pre>password = {{ auth.password.$error | json }}</pre>
+		<pre>model = {{ user | json }}</pre>
+	</form>
+	<form name="edit" ng-show="active" novalidate>
+		<legend>{{legend}}</legend>
+		<input name="avatar" placeholder="avatar" 
+			type="text" ng-model="user.avatar" required />
+		<label for="avatar" class="control-label">
+			<span ng-show="edit.avatar.$invalid">avatar</span>
+			<span class="error" ng-show="edit.avatar.$error.required">*</span>
+		</label><br />
+		<input name="email" placeholder="email" 
+			type="email" ng-model="user.email" required />
+		<label for="email" class="control-label">
+			<span ng-show="edit.email.$invalid">email</span>
+			<span class="error" ng-show="edit.email.$error.required">*</span>
+		</label><br />
+		<input name="family_name" placeholder="family_name" 
+			type="family_name" ng-model="user.family_name" required />
+		<label for="family_name" class="control-label">
+			<span ng-show="edit.family_name.$invalid">family_name</span>
+			<span class="error" ng-show="edit.family_name.$error.required">*</span>
+		</label><br />
+		<input name="given_name" placeholder="given_name" 
+			type="given_name" ng-model="user.given_name" required />
+		<label for="given_name" class="control-label">
+			<span ng-show="edit.given_name.$invalid">given_name</span>
+			<span class="error" ng-show="edit.given_name.$error.required">*</span>
+		</label><br />
+		<input name="handle" placeholder="handle" 
+			type="handle" ng-model="user.handle" required />
+		<label for="handle" class="control-label">
+			<span ng-show="edit.handle.$invalid">handle</span>
+			<span class="error" ng-show="edit.handle.$error.required">*</span>
+		</label><br />
+		<button ng-click="update()" ng-disabled="edit.$invalid || unchanged()">save</button>
+		<button ng-click="reset()" ng-disabled="unchanged()">undo</button>
+		<br />
+		<button ng-click="logout()">logout</button>
+		<hr />
+		<pre>valid = {{ edit.$valid | json }}</pre>
+		<pre>dirty = {{ edit.$dirty | json }}</pre>
+		<pre>username = {{ edit.username.$error | json }}</pre>
+		<pre>password = {{ edit.password.$error | json }}</pre>
+		<pre>http = {{ http | json }}</pre>
+	</form>
+</div>

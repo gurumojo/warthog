@@ -15,9 +15,9 @@ ngDefine('example.directive', [
 	 * AngularJS Directive
 	 */
 	module.directive('appDebug',
-	
+
 		[function(){
-	
+
 			/**
 			 * app-debug
 			 *
@@ -48,11 +48,72 @@ ngDefine('example.directive', [
 				}
 			};
 		}]
-	
-	).directive('appVersion',
-	
+
+	).directive('appFooter',
+
+		[function(){
+
+			/**
+			 * app-footer
+			 *
+			 * declare element properties and behaviors
+			 * with a directiveDefinitionObject
+			 */
+			return {
+				transclude: true,
+				template: '<div app-version></div>',
+				link: function( scope, element, attribute ){
+					element.addClass('footer');
+				}
+			};
+		}]
+
+	).directive('appLoading',
+
 		['meta', function( meta ){
-	
+
+			/**
+			 * app-loading
+			 *
+			 * update DOM and register listeners
+			 * with a postLink method
+			 */
+			return function( scope, element, attribute, controller ){
+				element.addClass('navbar navbar-static-top');
+				element.html('<div class="splash">'+
+					'<img src="'+ meta.url.base +'img/loading.gif" alt="Loading..." />'+
+				'</div>');
+			};
+		}]
+
+	).directive('appNavigation',
+
+		['meta', function( meta ){
+
+			/**
+			 * app-navigation
+			 *
+			 * update DOM and register listeners
+			 * with a postLink method
+			 */
+			return function( scope, element, attribute, controller ){
+				element.addClass('navbar navbar-static-top');
+				element.html('<nav class="navbar-inner">'+
+					'<ul class="nav menu">'+
+						'<li><a href="#/home">home</a></li>'+
+						'<li><a href="#/login">login</a></li>'+
+						'<li><a href="#/other">other</a></li>'+
+						'<li><a target="_blank" href="'+ meta.url.base +
+							'src/test/jasmine/index.html">test</a></li>'+
+					'</ul>'+
+				'</nav>');
+			};
+		}]
+
+	).directive('appVersion',
+
+		['meta', function( meta ){
+
 			/**
 			 * app-version
 			 *
@@ -68,11 +129,11 @@ ngDefine('example.directive', [
 				element.text(meta.title +' '+ meta.version);
 			};
 		}]
-	
+
 	).directive('inputTextEditor',
-	
+
 		[function(){
-	
+
 			/**
 			 * input-text-editor
 			 *
@@ -108,11 +169,11 @@ ngDefine('example.directive', [
 				}
 			};
 		}]
-	
+
 	).directive('textareaEditor',
-	
+
 		[function(){
-	
+
 			/**
 			 * textarea-editor
 			 *
@@ -147,11 +208,11 @@ ngDefine('example.directive', [
 				}
 			};
 		}]
-	
+
 	).directive('userSession',
-	
+
 		[function(){
-	
+
 			/**
 			 * user-session
 			 *
@@ -233,7 +294,7 @@ ngDefine('example.directive', [
 				}
 			};
 		}]
-	
+
 	);
 
 });
