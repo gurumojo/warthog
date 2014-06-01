@@ -1,3 +1,14 @@
+/**
+ * @summary
+ *  Human Module
+ * @since 0.0.2
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @requires {@link module:Mammal Mammal}
+ * @module Human
+ * @description
+ *  This module returns a constructor of type {@link Human}, an
+ *  augmented {@link Mammal} type.
+ */
 define([
 
 	'underscore', 'Mammal'
@@ -7,21 +18,14 @@ define([
 	/**
 	 * @summary
 	 *  Human Constructor
-	 * @requires
-	 *  {@link http://underscorejs.org/ underscore}
-	 * @augments
-	 *  Mammal
-	 * @classdesc
-	 *  Human.prototype
-	 * @exports
-	 *  Human
-	 * @since
-	 *  0.0.2
+	 * @since 0.0.2
+	 * @augments Mammal
+	 * @classdesc Human.prototype
+	 * @function Human
 	 * @param
 	 *  {object} option - enumerated instance properties
 	 * @description
-	 *  This module returns a constructor of type Human, an augmented
-	 *  Mammal type.
+	 *  Create a new object with supplied attributes.
 	 * @constructor
 	 */
 	function Human(option){
@@ -33,6 +37,7 @@ define([
 		/**
 		 * @summary
 		 *  Copulate
+		 * @memberof Human
 		 * @return
 		 *  {boolean} success
 		 * @description
@@ -45,6 +50,7 @@ define([
 		/**
 		 * @summary
 		 *  Bathe
+		 * @memberof Human
 		 * @return
 		 *  {boolean} success
 		 * @description

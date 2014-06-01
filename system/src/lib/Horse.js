@@ -1,3 +1,13 @@
+/**
+ * @summary
+ *  Horse Module
+ * @since 0.0.1
+ * @requires {@link module:Mammal Mammal}
+ * @module Horse
+ * @description
+ *  This module returns a constructor of type Horse, an augmented
+ *  Mammal type.
+ */
 define([
 
 	'Mammal'
@@ -5,14 +15,12 @@ define([
 ], function(Mammal){
 
 	/**
-	 * Create a Horse object
-	 *
-	 * @augments
-	 *  Mammal
-	 * @exports
-	 *  Horse
-	 * @since
-	 *  0.0.1
+	 * @summary
+	 *  Horse Constructor
+	 * @since 0.0.1
+	 * @augments Mammal
+	 * @classdesc Horse.prototype
+	 * @function Horse
 	 * @param
 	 *  {string} name - customized reference
 	 * @constructor

@@ -1,3 +1,13 @@
+/**
+ * @summary
+ *  Mammal Module
+ * @since 0.0.1
+ * @requires {@link module:Organism Organism}
+ * @module Mammal
+ * @description
+ *  This module returns a constructor of type {@link Mammal}, an
+ *  augmented {@link Organism} type.
+ */
 define([
 
 	'Organism'
@@ -7,19 +17,14 @@ define([
 	/**
 	 * @summary
 	 *  Mammal Constructor
-	 * @augments
-	 *  Organism
-	 * @classdesc
-	 *  Mammal.prototype
-	 * @exports
-	 *  Mammal
-	 * @since
-	 *  0.0.1
+	 * @since 0.0.1
+	 * @augments Organism
+	 * @classdesc Mammal.prototype
+	 * @function Mammal
 	 * @param
 	 *  {object} option - enumerated instance properties
 	 * @description
-	 *  This module returns a constructor of type Mammal, an augmented
-	 *  Organism type.
+	 *  Create a new object with supplied attributes.
 	 * @constructor
 	 */
 	function Mammal(option){
@@ -31,6 +36,7 @@ define([
 	/**
 	 * @summary
 	 *  Drink
+	 * @memberof Mammal
 	 * @return
 	 *  {boolean} success
 	 */
@@ -41,6 +47,7 @@ define([
 	/**
 	 * @summary
 	 *  Feed
+	 * @memberof Mammal
 	 * @return
 	 *  {boolean} success
 	 */

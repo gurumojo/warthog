@@ -1,6 +1,12 @@
 /**
  * @summary
  *  AngularJS Router
+ * @since 0.1.0
+ * @requires {@link example/controller}
+ * @requires {@link example/directive}
+ * @requires {@link example/filter}
+ * @requires {@link example/service}
+ * @namespace example/router
  * @description
  *  The main application route request handler.
  */
@@ -15,26 +21,40 @@ ngDefine('example', [
 ], function(module){
 	'use strict';
 
-	module.config(['$routeProvider', function( $routeProvider ){
+	module.config(['$routeProvider',
 
-		$routeProvider.when('/home', {
-			controller: 'HomeController',
-			//templateUrl: 'html/home.html'
-			template:
-				'<div app-debug="{{title}}"><pre>{{debug|json}}</pre></div>'+
-				'<div input-text-editor="content.name"></div>'+
-				'<div textarea-editor="content.description"></div>'
-		});
-	
-		$routeProvider.when('/login', {
-			controller: 'LoginController',
-			template:
-				'<div app-debug="{{legend}}"><pre>{{debug|json}}</pre></div>'+
-				'<div user-session></div>'
-		});
-	
-		$routeProvider.otherwise({redirectTo: '/home'});
-	
-	}]);
+		/**
+		 * @summary
+		 *  Default Routes
+		 * @since 0.1.0
+		 * @requires {@link https://docs.angularjs.org/api/ngRoute ngRoute}
+		 * @function example/router.main
+		 * @description
+		 *  Declare $location.path handler configurations used by the angular
+		 *  $route service.
+		 */
+		function( $routeProvider ){
+
+			$routeProvider.when('/home', {
+				controller: 'HomeController',
+				//templateUrl: 'html/home.html'
+				template:
+					'<div app-debug="{{title}}"><pre>{{debug|json}}</pre></div>'+
+					'<div input-text-editor="content.name"></div>'+
+					'<div textarea-editor="content.description"></div>'
+			});
+
+			$routeProvider.when('/login', {
+				controller: 'LoginController',
+				template:
+					'<div app-debug="{{legend}}"><pre>{{debug|json}}</pre></div>'+
+					'<div user-session></div>'
+			});
+
+			$routeProvider.otherwise({redirectTo: '/home'});
+
+		}
+
+	]);
 
 });

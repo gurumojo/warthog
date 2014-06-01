@@ -1,6 +1,8 @@
 /**
  * @summary
  *  AngularJS Service
+ * @since 0.1.0
+ * @namespace example/service
  * @description
  *  The main application service collection.
  */
@@ -16,6 +18,8 @@ ngDefine('example.service', [
 		/**
 		 * @summary
 		 *  Meta Service
+		 * @since 0.1.0
+		 * @function example/service.meta
 		 * @return
 		 *  {object} meta instance
 		 */
@@ -53,10 +57,12 @@ ngDefine('example.service', [
 		/**
 		 * @summary
 		 *  Crypto Service
+		 * @since 0.1.0
+		 * @function example/service.crypto
 		 * @param
-		 *  {object} $http - angular service
+		 *  {ng.service} $http - XMLHttpRequest or JSONP
 		 * @param
-		 *  {object} meta - custom service
+		 *  {example.service} meta - application configuration
 		 * @return
 		 *  {object} crypto instance
 		 */
@@ -82,10 +88,12 @@ ngDefine('example.service', [
 		/**
 		 * @summary
 		 *  Parser Service
+		 * @since 0.1.0
+		 * @function example/service.parser
 		 * @param
-		 *  {object} $http - angular service
+		 *  {ng.service} $http - XMLHttpRequest or JSONP
 		 * @param
-		 *  {object} meta - custom service
+		 *  {example.service} meta - application configuration
 		 * @return
 		 *  {object} parser instance
 		 */
@@ -109,13 +117,15 @@ ngDefine('example.service', [
 
 		/**
 		 * @summary
-		 *  Parser Service
+		 *  Session Service
+		 * @since 0.1.0
+		 * @function example/service.session
 		 * @param
-		 *  {object} $http - angular service
+		 *  {ng.service} $http - XMLHttpRequest or JSONP
 		 * @param
-		 *  {object} crypto - custom service
+		 *  {example.service} crypto - secure hash algorithms
 		 * @param
-		 *  {object} meta - custom service
+		 *  {example.service} meta - application configuration
 		 * @return
 		 *  {object} session instance
 		 */

@@ -1,3 +1,15 @@
+/**
+ * @summary
+ *  Wrangler Module
+ * @since 0.0.2
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @requires {@link module:Human Human}
+ * @requires {@link module:Horse Horse}
+ * @module Wrangler
+ * @description
+ *  This module returns a constructor of type {@link Wrangler}, an
+ *  augmented {@link Human} type.
+ */
 define([
 
 	'underscore', 'Human', 'Horse'
@@ -7,21 +19,14 @@ define([
 	/**
 	 * @summary
 	 *  Wrangler Constructor
-	 * @requires
-	 *  {@link http://underscorejs.org/ underscore}
-	 * @augments
-	 *  Human
-	 * @classdesc
-	 *  Wrangler.prototype
-	 * @exports
-	 *  Wrangler
-	 * @since
-	 *  0.0.2
+	 * @since 0.0.2
+	 * @augments Human
+	 * @classdesc Wrangler.prototype
+	 * @function Wrangler
 	 * @param
 	 *  {object} option - enumerated instance properties
 	 * @description
-	 *  This module returns a constructor of type Wrangler, an augmented
-	 *  Human type.
+	 *  Create a new object with supplied attributes.
 	 * @constructor
 	 */
 	function Wrangler(option){

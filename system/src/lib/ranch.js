@@ -1,3 +1,15 @@
+/**
+ * @summary
+ *  Ranch Module
+ * @since 0.0.1
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @requires {@link Corral}
+ * @requires {@link Pasture}
+ * @requires {@link Wrangler}
+ * @module ranch
+ * @description
+ *  This module returns an object of type ranch.
+ */
 define([
 
 	'underscore', 'Corral', 'Pasture', 'Wrangler'
@@ -7,18 +19,17 @@ define([
 	/**
 	 * @summary
 	 *  Horse Ranch
-	 * @exports
-	 *  ranch
-	 * @since
-	 *  0.0.1
+	 * @since 0.0.1
+	 * @namespace ranch
 	 * @description
-	 *  A collection of Horse collection objects
+	 *  A collection of Wrangler and Horse collection objects.
 	 */
 	var ranch = {
 
 		/**
 		 * @summary
 		 *  Horse Corral
+		 * @memberof ranch
 		 * @description
 		 *  An indoor collection of Horse objects
 		 */
@@ -27,6 +38,7 @@ define([
 		/**
 		 * @summary
 		 *  Horse Pasture
+		 * @memberof ranch
 		 * @description
 		 *  An outdoor collection of Horse objects
 		 */
@@ -35,6 +47,7 @@ define([
 		/**
 		 * @summary
 		 *  Horse Wrangler
+		 * @memberof ranch
 		 * @description
 		 *  A Horse collection Wrangler object
 		 */
@@ -43,6 +56,7 @@ define([
 		/**
 		 * @summary
 		 *  Horse Count
+		 * @memberof ranch
 		 * @return
 		 *  {number}
 		 * @description

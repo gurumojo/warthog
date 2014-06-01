@@ -1,3 +1,15 @@
+/**
+ * @summary
+ *  Corral Module
+ * @since 0.0.1
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @requires {@link module:Cache Cache}
+ * @requires {@link module:Horse Horse}
+ * @module Corral
+ * @description
+ *  This module returns a constructor of type {@link Corral}, an
+ *  augmented {@link Cache} type.
+ */
 define([
 
 	'underscore', 'Cache', 'Horse'
@@ -7,24 +19,18 @@ define([
 	/**
 	 * @summary
 	 *  Corral Constructor
-	 * @requires
-	 *  {@link http://underscorejs.org/ underscore}
-	 * @requires
-	 *  {@link Horse}
-	 * @augments
-	 *  Cache
-	 * @classdesc
-	 *  Corral.prototype
-	 * @exports
-	 *  Corral
-	 * @since
-	 *  0.0.1
+	 * @since 0.0.1
+	 * @augments Cache
+	 * @classdesc Corral.prototype
+	 * @function Corral
 	 * @description
-	 *  This module returns a constructor of type Corral, a collection
-	 *  manager for Horse objects which augments Cache.
+	 *  Create a new object of type Corral, a collection manager for
+	 *  Horse objects.
 	 * @constructor
 	 */
-	function Corral(){}
+	function Corral(){
+		//this.storage = {};
+	}
 
 	/**
 	 * @summary
@@ -39,6 +45,7 @@ define([
 		/**
 		 * @summary
 		 *  Setter
+		 * @function Corral#set
 		 * @param
 		 *  {string} member - object attribute descriptor
 		 * @param
@@ -47,6 +54,8 @@ define([
 		 *  {Horse} value
 		 * @description
 		 *  Set object member values by name
+		 * @todo
+		 *  Refactor from accessing global storage to this.storage.
 		 */
 		set: function(member, value){
 			if(typeof member !== 'string'){
@@ -55,6 +64,8 @@ define([
 			if(!(value instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
+			//this.storage[key] = value;
+			//return this.storage[key];
 			storage[member] = value;
 			return storage[member];
 		}

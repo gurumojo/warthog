@@ -1,3 +1,12 @@
+/**
+ * @summary
+ *  Cache Module
+ * @since 0.0.2
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @module Cache
+ * @description
+ *  This module returns a constructor of type {@link Cache}.
+ */
 define([
 
 	'underscore',
@@ -7,20 +16,18 @@ define([
 	/**
 	 * @summary
 	 *  Cache Constructor
-	 * @requires
-	 *  {@link http://underscorejs.org/ underscore}
-	 * @classdesc
-	 *  Cache.prototype
-	 * @exports
-	 *  Cache
-	 * @since
-	 *  0.0.2
+	 * @since 0.0.2
+	 * @classdesc Cache.prototype
+	 * @function Cache
 	 * @description
-	 *  This module returns a constructor of type Cache, a general
-	 *  private collection manager with accessor and mutator methods.
+	 *  Create a new private cache object.
+	 * @todo
+	 *  Refactor from accessing global storage to this.storage.
 	 * @constructor
 	 */
-	function Cache(){}
+	function Cache(){
+		//this.storage = {};
+	}
 
 	/**
 	 * @summary
@@ -35,34 +42,38 @@ define([
 		/**
 		 * @summary
 		 *  Clean Value Cache
+		 * @since 0.0.1
+		 * @function Cache#clean
 		 * @return
 		 *  {boolean} success
 		 * @description
 		 *  Purge all object members
 		 */
 		clean: function(){
-			//return _.isEmpty(this.cache = {});
+			//return _.isEmpty(this.storage = {});
 			return _.isEmpty(storage = {});
 		},
 
 		/**
 		 * @summary
 		 *  Count Value Cache
+		 * @since 0.0.1
+		 * @function Cache#count
 		 * @return
 		 *  {number} size
 		 * @description
 		 *  Get the size of the object collection
 		 */
 		count: function(){
-			//return _.size(this.cache);
+			//return _.size(this.storage);
 			return _.size(storage);
 		},
 
 		/**
 		 * @summary
 		 *  Get Member Values
-		 * @since
-		 *  0.0.1
+		 * @since 0.0.1
+		 * @function Cache#get
 		 * @param
 		 *  {(string|string[])} key - instance member reference(s)
 		 * @return
@@ -72,15 +83,15 @@ define([
 		 *  The key parameter may be a string or an array of strings.
 		 */
 		get: function(key){
-			//return _.values(_.pick(this.cache, key));
+			//return _.values(_.pick(this.storage, key));
 			return _.values(_.pick(storage, key));
 		},
 
 		/**
 		 * @summary
 		 *  Set Member Values
-		 * @since
-		 *  0.0.1
+		 * @since 0.0.1
+		 * @function Cache#set
 		 * @param
 		 *  {string} key - instance member reference
 		 * @param
@@ -94,8 +105,8 @@ define([
 			if(typeof key !== 'string'){
 				throw new TypeError('string parameter required');
 			}
-			//this.cache[key] = value;
-			//return this.cache[key];
+			//this.storage[key] = value;
+			//return this.storage[key];
 			storage[key] = value;
 			return storage[key];
 		},
@@ -103,8 +114,8 @@ define([
 		/**
 		 * @summary
 		 *  Filter Member Values
-		 * @since
-		 *  0.0.2
+		 * @since 0.0.2
+		 * @function Cache#filter
 		 * @param
 		 *  {object} option - member key/value hash
 		 * @return
@@ -117,7 +128,7 @@ define([
 			if(typeof option !== 'object'){
 				throw new TypeError('object parameter required');
 			}
-			//return _.where(this.cache, option);
+			//return _.where(this.storage, option);
 			return _.where(storage, option);
 		}
 	};

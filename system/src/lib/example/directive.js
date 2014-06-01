@@ -1,6 +1,8 @@
 /**
  * @summary
  *  AngularJS Directive
+ * @since 0.1.0
+ * @namespace example/directive
  * @description
  *  The main application directive collection.
  */
@@ -11,19 +13,27 @@ ngDefine('example.directive', [
 ], function(module){
 	'use strict';
 
-	/**
-	 * AngularJS Directive
-	 */
-	module.directive('appDebug',
+	module.directive('appDebug', [
 
-		[function(){
-
-			/**
-			 * app-debug
-			 *
-			 * declare element properties and behaviors
-			 * with a directiveDefinitionObject
-			 */
+		/**
+		 * @summary
+		 *  app-debug
+		 * @since 0.1.0
+		 * @function example/directive#appDebug
+		 * @param
+		 *  {string} $scope.title - header model property
+		 * @param
+		 *  {string} $scope.debug - content model property
+		 * @description
+		 *  A directiveDefinitionObject providing scope model properties
+		 *  for the template label as well as (optionally filtered) output.
+		 *  The resulting markup allows for clicking on the debug header to
+		 *  expand from its default collapsed state to reveal output
+		 *  containing dynamically updating scope information.
+		 * @example
+		 *  <div app-debug="{{title}}"><pre>{{debug|json}}</pre></div>
+		 */
+		function(){
 			return {
 				replace: true,
 				transclude: true,
@@ -49,16 +59,20 @@ ngDefine('example.directive', [
 			};
 		}]
 
-	).directive('appFooter',
+	).directive('appFooter', [
 
-		[function(){
-
-			/**
-			 * app-footer
-			 *
-			 * declare element properties and behaviors
-			 * with a directiveDefinitionObject
-			 */
+		/**
+		 * @summary
+		 *  app-footer
+		 * @since 0.1.0
+		 * @function example/directive#appFooter
+		 * @description
+		 *  A directiveDefinitionObject presenting markup produced by the
+		 *  appVersion directive.
+		 * @example
+		 *  <footer app-footer role="contentinfo"></footer>
+		 */
+		function(){
 			return {
 				transclude: true,
 				template: '<div app-version></div>',
@@ -68,34 +82,43 @@ ngDefine('example.directive', [
 			};
 		}]
 
-	).directive('appLoading',
+	).directive('appLoading', ['meta',
 
-		['meta', function( meta ){
-
-			/**
-			 * app-loading
-			 *
-			 * update DOM and register listeners
-			 * with a postLink method
-			 */
+		/**
+		 * @summary
+		 *  app-loading
+		 * @since 0.1.0
+		 * @requires {@link example/service.meta}
+		 * @function example/directive#appLoading
+		 * @description
+		 *  A postLink method providing markup for displaying a spinner image
+		 *  (loading indicator).
+		 * @example
+		 *  <div app-loading></div>
+		 */
+		function( meta ){
 			return function( scope, element, attribute, controller ){
-				element.addClass('navbar navbar-static-top');
 				element.html('<div class="splash">'+
 					'<img src="'+ meta.url.base +'img/loading.gif" alt="Loading..." />'+
 				'</div>');
 			};
 		}]
 
-	).directive('appNavigation',
+	).directive('appNavigation', ['meta',
 
-		['meta', function( meta ){
-
-			/**
-			 * app-navigation
-			 *
-			 * update DOM and register listeners
-			 * with a postLink method
-			 */
+		/**
+		 * @summary
+		 *  app-navigation
+		 * @since 0.1.0
+		 * @requires {@link example/service.meta}
+		 * @function example/directive#appNavigation
+		 * @description
+		 *  A postLink method providing markup for a static navabr as
+		 *  supported by the bootstrap library.
+		 * @example
+		 *  <header app-navigation role="banner"></header>
+		 */
+		function( meta ){
 			return function( scope, element, attribute, controller ){
 				element.addClass('navbar navbar-static-top');
 				element.html('<nav class="navbar-inner">'+
@@ -103,23 +126,28 @@ ngDefine('example.directive', [
 						'<li><a href="#/home">home</a></li>'+
 						'<li><a href="#/login">login</a></li>'+
 						'<li><a href="#/other">other</a></li>'+
-						'<li><a target="_blank" href="'+ meta.url.base +
-							'src/test/jasmine/index.html">test</a></li>'+
+						'<li><a target="_blank" href="/system/src/test/jasmine/index.html">test</a></li>'+
 					'</ul>'+
 				'</nav>');
 			};
 		}]
 
-	).directive('appVersion',
+	).directive('appVersion', ['meta',
 
-		['meta', function( meta ){
-
-			/**
-			 * app-version
-			 *
-			 * update DOM and register listeners
-			 * with a postLink method
-			 */
+		/**
+		 * @summary
+		 *  app-version
+		 * @since 0.1.0
+		 * @requires {@link example/service.meta}
+		 * @function example/directive#appVersion
+		 * @description
+		 *  A postLink method that edits markup to combine data from the meta
+		 *  service. It displays the application title and version number at
+		 *  half the normal text opacity.
+		 * @example
+		 *  <div app-version></div>
+		 */
+		function( meta ){
 			return function( scope, element, attribute, controller ){
 				element.css({
 					opacity: 0.5,
@@ -130,18 +158,25 @@ ngDefine('example.directive', [
 			};
 		}]
 
-	).directive('inputTextEditor',
+	).directive('inputTextEditor', [
 
-		[function(){
-
-			/**
-			 * input-text-editor
-			 *
-			 * a contentEditable directiveDefinitionObject to allow editing of a
-			 * child span via text input, triggered on dblclick, released on blur
-			 *
-			 * @param string ng-model "parent.child" dotted scope object reference
-			 */
+		/**
+		 * @summary
+		 *  input-text-editor
+		 * @since 0.1.0
+		 * @function example/directive#inputTextEditor
+		 * @param
+		 *  {string} $scope.namespace.attribute - editor model property
+		 * @description
+		 *  A contentEditable directiveDefinitionObject allows editing of a
+		 *  child span via text input. It is triggered on dblclick, released
+		 *  on blur. The targeted child attribute needs to be nested within a
+		 *  parent scope object in order to allow for the dynamic updating of
+		 *  bound properties.
+		 * @example
+		 *  <div input-text-editor="namespace.attribute"></div>
+		 */
+		function(){
 			return {
 				compile: function( element, attribute, transclude ){
 					element.html(
@@ -170,17 +205,25 @@ ngDefine('example.directive', [
 			};
 		}]
 
-	).directive('textareaEditor',
+	).directive('textareaEditor', [
 
-		[function(){
-
-			/**
-			 * textarea-editor
-			 *
-			 * a contentEditable directiveDefinitionObject
-			 *
-			 * @param string ng-model "parent.child" dotted scope object reference
-			 */
+		/**
+		 * @summary
+		 *  textarea-editor
+		 * @since 0.1.0
+		 * @function example/directive#textareaEditor
+		 * @param
+		 *  {string} $scope.namespace.attribute - editor model property
+		 * @description
+		 *  A contentEditable directiveDefinitionObject allows editing of a
+		 *  child span via text input. It is triggered on click, released on
+		 *  blur. The targeted child attribute needs to be nested within a
+		 *  parent scope object in order to allow for the dynamic updating of
+		 *  bound properties.
+		 * @example
+		 *  <div textarea-editor="namespace.attribute"></div>
+		 */
+		function(){
 			return {
 				compile: function( element, attribute, transclude ){
 					element.html(
@@ -209,16 +252,26 @@ ngDefine('example.directive', [
 			};
 		}]
 
-	).directive('userSession',
+	).directive('userSession', [
 
-		[function(){
-
-			/**
-			 * user-session
-			 *
-			 * declare element properties and behaviors
-			 * with a directiveDefinitionObject
-			 */
+		/**
+		 * @summary
+		 *  user-session
+		 * @since 0.1.0
+		 * @requires {@link example/service.session}
+		 * @requires {@link example/controller.LoginController}
+		 * @function example/directive#userSession
+		 * @description
+		 *  A directiveDefinitionObject providing form markup for user
+		 *  authentication and profile editing, as well as an inline debug
+		 *  output revealing model data for use in development.
+		 * @todo
+		 *  Loosen coupling with the LoginController and session service to
+		 *  provide better separation of concerns.
+		 * @example
+		 *  <div user-session></div>
+		 */
+		function(){
 			return {
 				replace: true,
 				//templateUrl: 'html/session.html',
@@ -297,4 +350,5 @@ ngDefine('example.directive', [
 
 	);
 
+	return module;
 });

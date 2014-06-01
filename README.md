@@ -1,9 +1,11 @@
 Example Package
 ===============
 
-- Gruntfile.js (task automation)
-- package.json (package metadata)
-- README.md (user guide)
+- bower.json (client package metadata)
+- Gruntfile.js (server task automation)
+- LICENSE.md (license information)
+- package.json (server package metadata)
+- README.md (developer guide)
 - build/ (system sandbox and archive)
 	- 0.0.0/ (symlink to system files)
 	- \*.\*.\*/ (version hierarchies)
@@ -17,19 +19,39 @@ Example Package
 		- qunit.css (QUnit styles)
 	- doc/ (source documentation)
 		- [placeholder]
+	- html/ (template markup)
+		- [placeholder]
 	- img/ (image library)
 		- favicon.ico (shortcut icon)
 		- icon.png (apple touch icon)
 		- loading.gif (progress indicator)
-	- lib/ (external libraries)
+	- json/ (model data mocks)
+		- user/ (authentication and profiles)
+			- login (response stub)
+			- logout (response stub)
+			- profile (response stub)
+	- lib/ (external library symlinks)
+		- angular.js (Bower module angular)
+		- angular-route.js (Bower module angular-route)
+		- ngDefine.js (Bower module requirejs-angular-define)
+		- ngParse.js (Bower module requirejs-angular-define)
 		- qunit.js (Node module qunit)
 		- require.js (Node module requirejs)
 		- underscore.js (Node module underscore)
 	- src/ (application root)
+		- bugfix.sh (post-install helper)
 		- main.js (application executable)
 		- lib/ (internal libraries)
 			- Example.js (AMD object constructor)
-			- initialize.js (application bootstrap)
+			- core/ (framework bootstrap)
+				- cli.js (Node shell bindings)
+				- dom.js (browser window bindings)
+			- example/ (AngularJS application)
+				- controller.js (object class code)
+				- directive.js (smart markup)
+				- filter.js (template helpers)
+				- router.js (location path mapping)
+				- service.js (singleton code)
 		- test/ (unit and functional tests)
 			- jasmine.js (test config)
 			- qunit.js (test config)
@@ -59,7 +81,7 @@ Then a global install of the grunt-cli utility within this virtual environment l
 
 Otherwise, use the local copy pulled from [NPM](https://npmjs.org/) during the dependency install process.  Simply substitute "`node_modules/grunt-cli/bin/grunt`" as necessary wherever the "`grunt`" command is referred to within this document.
 
-Once your preferred node version is installed and the example package archive has been extracted, running the following command from within the example directory will install all the dependencies declared within the package.json file.
+Once your preferred node version is installed and the example package archive has been extracted, running the following command from within the example directory will install all the dependencies declared within the package.json and bower.json files.
 
 >`npm install`
 
@@ -132,6 +154,10 @@ This task minimizes HTML file size:
 
 >`grunt htmlmin`
 
+This task runs Jasmine tests:
+
+>`grunt jasmine`
+
 This task builds API documentation from inline comments:
 
 >`grunt jsdoc`
@@ -140,7 +166,7 @@ This task performs code quality checks:
 
 >`grunt jshint`
 
-This task runs unit tests:
+This task runs QUnit tests:
 
 >`grunt qunit`
 
@@ -195,6 +221,7 @@ Documentation
 - [Node](http://nodejs.org/) - V8 Javascript Platform
 - [NPM](https://npmjs.org/) - Node Packaged Modules
 - [Grunt](http://gruntjs.com/) - JavaScript Task Runner
+- [Jasmine](http://jasmine.github.io/) - Behavior Driven Development
 - [JSDoc](http://usejsdoc.org/) - Inline Documentation Processor
 - [JSHint](http://jshint.com/) - Code Quality Tool
 - [QUnit](http://qunitjs.com/) - Unit Testing Framework

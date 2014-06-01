@@ -125,7 +125,7 @@ module.exports = function( grunt ){
     jshint: {
       src: ['system/src/**/*.js'],
       options: {
-        ignores: ['system/src/test/**', 'system/src/lib/ngApp/lib/**'],
+        ignores: ['system/src/test/**'],
         globals: {
           jQuery: true,
           console: true,

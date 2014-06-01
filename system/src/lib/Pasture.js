@@ -1,3 +1,15 @@
+/**
+ * @summary
+ *  Pasture Module
+ * @since 0.0.1
+ * @requires {@link http://underscorejs.org/ underscore}
+ * @requires {@link module:Cache Cache}
+ * @requires {@link module:Horse Horse}
+ * @module Pasture
+ * @description
+ *  This module returns a constructor of type {@link Pasture}, an
+ *  augmented {@link Cache} type.
+ */
 define([
 
 	'underscore', 'Cache', 'Horse'
@@ -7,32 +19,33 @@ define([
 	/**
 	 * @summary
 	 *  Pasture Constructor
-	 * @requires
-	 *  {@link http://underscorejs.org/ underscore}
-	 * @requires
-	 *  {@link Horse}
-	 * @augments
-	 *  Cache
-	 * @classdesc
-	 *  Pasture.prototype
-	 * @exports
-	 *  Pasture
-	 * @since
-	 *  0.0.1
+	 * @since 0.0.1
+	 * @augments Cache
+	 * @classdesc Pasture.prototype
+	 * @function Pasture
 	 * @description
-	 *  This module returns a constructor of type Pasture, a collection
-	 *  manager for Horse objects which extends Cache.
+	 *  Create a new object of type Pasture, a collection manager for
+	 *  Horse objects.
 	 * @constructor
 	 */
 	function Pasture(){
-		storage = {};
+		//this.storage = {};
 	}
+
+	/**
+	 * @summary
+	 *  Storage
+	 * @description
+	 *  A private collection hash.
+	 */
+	var storage = {};
 
 	Pasture.prototype = {
 
 		/**
 		 * @summary
 		 *  Setter
+		 * @function Pasture#set
 		 * @param
 		 *  {string} member - object attribute descriptor
 		 * @param
@@ -41,6 +54,8 @@ define([
 		 *  {Horse} value
 		 * @description
 		 *  Set object member values by name
+		 * @todo
+		 *  Refactor from accessing global storage to this.storage.
 		 */
 		set: function(member, value){
 			if(typeof member !== 'string'){
@@ -49,6 +64,8 @@ define([
 			if(!(value instanceof Horse)){
 				throw new TypeError('Horse parameter required');
 			}
+			//this.storage[key] = value;
+			//return this.storage[key];
 			storage[member] = value;
 			return storage[member];
 		}

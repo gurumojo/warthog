@@ -1,3 +1,13 @@
+/**
+ * @summary
+ *  Appaloosa Module
+ * @since 0.0.1
+ * @requires {@link module:Horse Horse}
+ * @module Appaloosa
+ * @description
+ *  This module returns a constructor of type Appaloosa, an augmented
+ *  Horse type.
+ */
 define([
 
 	'Horse'
@@ -5,14 +15,12 @@ define([
 ], function(Horse){
 
 	/**
-	 * Create an Appaloosa object
-	 *
-	 * @augments
-	 *  Horse
-	 * @exports
-	 *  Appaloosa
-	 * @since
-	 *  0.0.1
+	 * @summary
+	 *  Appaloosa Constructor
+	 * @since 0.0.1
+	 * @augments Horse
+	 * @classdesc Appaloosa.prototype
+	 * @function Appaloosa
 	 * @param
 	 *  {string} name - customized reference
 	 * @constructor

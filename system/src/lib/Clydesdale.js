@@ -1,3 +1,13 @@
+/**
+ * @summary
+ *  Clydesdale Module
+ * @since 0.0.1
+ * @requires {@link module:Horse Horse}
+ * @module Clydesdale
+ * @description
+ *  This module returns a constructor of type Clydesdale, an augmented
+ *  Horse type.
+ */
 define([
 
 	'Horse'
@@ -5,14 +15,12 @@ define([
 ], function(Horse){
 
 	/**
-	 * Create a Clydesdale object
-	 *
-	 * @augments
-	 *  Horse
-	 * @exports
-	 *  Clydesdale
-	 * @since
-	 *  0.0.1
+	 * @summary
+	 *  Clydesdale Constructor
+	 * @since 0.0.1
+	 * @augments Horse
+	 * @classdesc Clydesdale.prototype
+	 * @function Clydesdale
 	 * @param
 	 *  {string} name - customized reference
 	 * @constructor
