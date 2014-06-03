@@ -187,25 +187,12 @@ module.exports = function( grunt ){
           mainConfigFile: 'system/src/main.js',
           modules: [
             {
-            //  name: 'underscore'
-            //},
-            //{
-            //  name: 'ranch',
-            //  exclude: ['underscore']
-            //},
-            //{
-            //  name: '<%= pkg.name %>',
-            //  exclude: ['underscore']
-            //},
-            //{
-              name: 'initialize',
-            //  exclude: ['ranch']
-            //  //exclude: ['underscore', 'ranch', '<%= pkg.name %>']
-            //},
-            //{
-            //  name: 'main',
-            //  //include: ['initialize', 'underscore', '<%= pkg.name %>'],
-            //  exclude: ['initialize', 'underscore', '<%= pkg.name %>', 'ranch']
+              name: 'core/cli'
+              //exclude: ['crypto']
+            },
+            {
+              name: 'core/dom'
+              //exclude: ['crypto']
             }
           ],
           //optimize: 'none', //'uglify' by default
@@ -214,7 +201,7 @@ module.exports = function( grunt ){
             main: '../main'
           },
           cssImportIgnore: 'bootstrap/2.3.1/min.css, bootstrap/2.3.1/responsive/min.css',
-          //skipDirOptimize: true, // skip optimization on non-build files
+          skipDirOptimize: true, // skip optimization on non-build files
           keepBuildDir: false, // delete the build directory before each run
           //removeCombined: true, // eliminate duplicate (combined) files from build
           preserveLicenseComments: false, // preserve only JSDoc-style @license
@@ -233,7 +220,7 @@ module.exports = function( grunt ){
       lib: {
         expand: true,
         cwd: 'system/',
-        src: ['lib/**/*.js', 'src/main.js'],
+        src: ['src/main.js', 'lib/**/*.js', '!**/md5.js', '!**/xml2json.js'],
         dest: 'build/<%= pkg.version %>'
       }
     },
