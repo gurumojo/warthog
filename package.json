@@ -1,11 +1,11 @@
 {
   "name": "warthog",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A full stack application template for Node, Grunt, Bower, RequireJS and AngularJS usage.",
   "license": "MIT",
   "main": "system/src/main",
   "scripts": {
-    "test": "grunt test",
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js system/src/test/example/unit/ --verbose --matchall",
     "postinstall": "bower install && system/src/bugfix.sh"
   },
   "repository": {
@@ -17,6 +17,7 @@
     "underscore": "^1.6.0"
   },
   "devDependencies": {
+    "amdefine": "^0.1.0",
     "bower": "^1.3.3",
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
@@ -36,6 +37,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-replace": "~0.5.1",
     "grunt-template-jasmine-requirejs": "~0.1.8",
+    "jasmine-node": "^1.14.3",
     "jsdoc": "~3.3.0",
     "semver": "~2.2.1",
     "stripcolorcodes": "~0.1.0"

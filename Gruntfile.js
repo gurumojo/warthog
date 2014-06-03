@@ -112,8 +112,19 @@ module.exports = function( grunt ){
           templateOptions: {
             requireConfigFile: 'system/src/test/jasmine.js'
           }
-        },
-        //src: 'system/src/lib/**/*.js'
+        }
+      //},
+      //ng: {
+      //  //src: 'system/src/lib/example/**/*.js'
+      //  options: {
+      //    keepRunner: true,
+      //    outfile: 'system/src/test/example/index.html',
+      //    specs: 'system/src/test/example/**/*.js',
+      //    template: require('grunt-template-jasmine-requirejs'),
+      //    templateOptions: {
+      //      requireConfigFile: 'system/src/test/example.js'
+      //    }
+      //  }
       }
     },
     jsdoc: {
