@@ -1,6 +1,6 @@
 {
   "name": "warthog",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A full stack application template for Node, Grunt, Bower, RequireJS and AngularJS usage.",
   "license": "MIT",
   "main": "system/src/main",

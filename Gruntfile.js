@@ -134,6 +134,38 @@ module.exports = function( grunt ){
         }
       }
     },
+    ngr: {
+      minify: {
+        options: {
+          appDir: 'system',
+          baseUrl: 'src/lib',
+          dir: 'build/<%= pkg.version %>',
+          mainConfigFile: 'system/src/main.js',
+          modules: [
+            {
+              name: 'core/cli'
+            },
+            {
+              name: 'core/dom'
+            },
+            {
+              name: 'example/router',
+              exclude: ['angular']
+            }
+          ],
+          //optimize: 'none', //'uglify' by default
+          optimizeCss: 'standard', //'standard.keepLines' by default
+          paths: {
+            main: '../main'
+          },
+          cssImportIgnore: 'bootstrap/2.3.1/min.css, bootstrap/2.3.1/responsive/min.css',
+          skipDirOptimize: true, // skip optimization on non-build files
+          keepBuildDir: false, // delete the build directory before each run
+          //removeCombined: true, // eliminate duplicate (combined) files from build
+          preserveLicenseComments: false, // preserve only JSDoc-style @license
+        }
+      }
+    },
     qunit: {
       src: ['system/src/test/qunit/**/*.html']
     },
@@ -410,6 +442,18 @@ module.exports = function( grunt ){
     }
   });
 
+  /** @summary AngularJS Optimization */
+  grunt.registerMultiTask('ngr', 'Optimization with r.js via ngDefine', function() {
+    var done = this.async();
+    var ngr = require('./bower_components/requirejs-angular-define/src/ngr.js');
+    ngr.optimize(this.data.options, function(){
+      done('success');
+    }, function(e){
+      console.log('Error during minify: ', e);
+      done(new Error('With failures: ' + e));
+    });
+  });
+
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -439,7 +483,8 @@ module.exports = function( grunt ){
   ]);
   grunt.registerTask('version', [
     'replace:build',
-    'requirejs',
+    //'requirejs',
+    'ngr',
     //'concat',
     'copy',
     'uglify',

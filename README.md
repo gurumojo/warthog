@@ -1,70 +1,6 @@
 Example Package
 ===============
 
-- bower.json (client package metadata)
-- Gruntfile.js (server task automation)
-- LICENSE.md (license information)
-- package.json (server package metadata)
-- README.md (developer guide)
-- build/ (system sandbox and archive)
-	- 0.0.0/ (symlink to system files)
-	- \*.\*.\*/ (version hierarchies)
-	- \*.\*.\*.tgz (version tarballs)
-- instance/ (browser target directory)
-	- \*.\*.\*.html (version hypertext)
-	- index.html (hypertext application)
-- system/ (development files)
-	- css/ (style sheets)
-		- main.css (web app styles)
-		- qunit.css (QUnit styles)
-	- doc/ (source documentation)
-		- [placeholder]
-	- html/ (template markup)
-		- [placeholder]
-	- img/ (image library)
-		- favicon.ico (shortcut icon)
-		- icon.png (apple touch icon)
-		- loading.gif (progress indicator)
-	- json/ (model data mocks)
-		- user/ (authentication and profiles)
-			- login (response stub)
-			- logout (response stub)
-			- profile (response stub)
-	- lib/ (external library symlinks)
-		- angular.js (Bower module angular)
-		- angular-route.js (Bower module angular-route)
-		- ngDefine.js (Bower module requirejs-angular-define)
-		- ngParse.js (Bower module requirejs-angular-define)
-		- qunit.js (Node module qunit)
-		- require.js (Node module requirejs)
-		- underscore.js (Node module underscore)
-	- src/ (application root)
-		- bugfix.sh (post-install helper)
-		- main.js (application executable)
-		- lib/ (internal libraries)
-			- Example.js (AMD object constructor)
-			- core/ (framework bootstrap)
-				- cli.js (Node shell bindings)
-				- dom.js (browser window bindings)
-			- example/ (AngularJS application)
-				- controller.js (object class code)
-				- directive.js (smart markup)
-				- filter.js (template helpers)
-				- router.js (location path mapping)
-				- service.js (singleton code)
-		- test/ (unit and functional tests)
-			- jasmine.js (test config)
-			- qunit.js (test config)
-			- jasmine/ (Jasmine tests)
-				- Example.js (spec for src/lib/Example.js)
-				- index.html (test runner)
-				- initialize.js (test harness)
-			- qunit/ (QUnit tests)
-				- Example.js (spec for src/lib/Example.js)
-				- index.html (test runner)
-				- initialize.js (test harness)
-
-
 -------
 Install
 -------
@@ -213,6 +149,17 @@ Then point a web browser at the example application:
 >[http://localhost:8000/system/doc/](http://localhost:8000/system/doc/)
 
 
+### Minimize network traffic ###
+
+Stats for initial load of the development version of instance/index.html:
+
+>`14 requests | 890 KB transferred | 459 ms (load: 172 ms, DOMContentLoaded: 172 ms)`
+
+Stats for initial load of the production version of instance/index.html:
+
+>`6 requests | 146 KB transferred | 235 ms (load: 151 ms, DOMContentLoaded: 151 ms)`
+
+
 -------------
 Documentation
 -------------
@@ -230,4 +177,72 @@ Documentation
 - [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD) - Asynchronous Module Definition
 - [RequireJS](http://requirejs.org/) - File and Module Loader
 - [Underscore](http://underscorejs.org/) - Utility Belt Library
+
+
+----------
+Filesystem
+----------
+
+- bower.json (client package metadata)
+- Gruntfile.js (server task automation)
+- LICENSE.md (license information)
+- package.json (server package metadata)
+- README.md (developer guide)
+- build/ (system sandbox and archive)
+	- 0.0.0/ (symlink to system files)
+	- \*.\*.\*/ (version hierarchies)
+	- \*.\*.\*.tgz (version tarballs)
+- instance/ (browser target directory)
+	- \*.\*.\*.html (version hypertext)
+	- index.html (hypertext application)
+- system/ (development files)
+	- css/ (style sheets)
+		- main.css (web app styles)
+		- qunit.css (QUnit styles)
+	- doc/ (source documentation)
+		- [placeholder]
+	- html/ (template markup)
+		- [placeholder]
+	- img/ (image library)
+		- favicon.ico (shortcut icon)
+		- icon.png (apple touch icon)
+		- loading.gif (progress indicator)
+	- json/ (model data mocks)
+		- user/ (authentication and profiles)
+			- login (response stub)
+			- logout (response stub)
+			- profile (response stub)
+	- lib/ (external library symlinks)
+		- angular.js (Bower module angular)
+		- angular-route.js (Bower module angular-route)
+		- ngDefine.js (Bower module requirejs-angular-define)
+		- ngParse.js (Bower module requirejs-angular-define)
+		- qunit.js (Node module qunit)
+		- require.js (Node module requirejs)
+		- underscore.js (Node module underscore)
+	- src/ (application root)
+		- bugfix.sh (post-install helper)
+		- main.js (application executable)
+		- lib/ (internal libraries)
+			- Example.js (AMD object constructor)
+			- core/ (framework bootstrap)
+				- cli.js (Node shell bindings)
+				- dom.js (browser window bindings)
+			- example/ (AngularJS application)
+				- controller.js (object class code)
+				- directive.js (smart markup)
+				- filter.js (template helpers)
+				- router.js (location path mapping)
+				- service.js (singleton code)
+		- test/ (unit and functional tests)
+			- jasmine.js (test config)
+			- qunit.js (test config)
+			- jasmine/ (Jasmine tests)
+				- Example.js (spec for src/lib/Example.js)
+				- index.html (test runner)
+				- initialize.js (test harness)
+			- qunit/ (QUnit tests)
+				- Example.js (spec for src/lib/Example.js)
+				- index.html (test runner)
+				- initialize.js (test harness)
 
