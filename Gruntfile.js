@@ -113,18 +113,19 @@ module.exports = function( grunt ){
             requireConfigFile: 'system/src/test/jasmine.js'
           }
         }
-      //},
-      //ng: {
-      //  //src: 'system/src/lib/example/**/*.js'
-      //  options: {
-      //    keepRunner: true,
-      //    outfile: 'system/src/test/example/index.html',
-      //    specs: 'system/src/test/example/**/*.js',
-      //    template: require('grunt-template-jasmine-requirejs'),
-      //    templateOptions: {
-      //      requireConfigFile: 'system/src/test/example.js'
-      //    }
-      //  }
+      },
+      ng: {
+        //src: 'system/src/lib/example/**/*.js'
+        options: {
+          keepRunner: true,
+          outfile: 'system/src/test/example/index.html',
+          specs: 'system/src/test/example/unit/*.js',
+          template: require('grunt-template-jasmine-requirejs'),
+          //template: require('warthog-jasmine'),
+          templateOptions: {
+            requireConfigFile: 'system/src/test/example.js'
+          }
+        }
       }
     },
     jsdoc: {
@@ -142,6 +143,34 @@ module.exports = function( grunt ){
           console: true,
           module: true,
           document: true
+        }
+      }
+    },
+    karma: {
+      ng: {
+        options: {
+          frameworks: ['jasmine'],
+          reporters: ['progress'],
+          port: 9876,
+          colors: true,
+          browsers: ['PhantomJS'],
+          captureTimeout: 10000,
+          files: [
+            'system/lib/require.js',
+            //'system/lib/angular.js',
+            //'system/lib/ngDefine.js',
+            'system/src/test/example.js',
+            //'system/src/test/example/unit/*'
+          ],
+          singleRun: true,
+          //preprocessors: {
+          //  '**/*.html': 'html2js'
+          //},
+          plugins: [
+              'karma-jasmine',
+              'karma-phantomjs-launcher',
+              //'karma-html2js-preprocessor'
+          ]
         }
       }
     },
@@ -480,6 +509,7 @@ module.exports = function( grunt ){
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('doc', [
