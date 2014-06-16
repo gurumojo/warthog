@@ -17,6 +17,7 @@ module.exports = function( grunt ){
     clean: {
       doc: ['system/doc/**/*', '!system/doc/.gitignore'],
       dot: ['build/<%= pkg.version %>/**/.*.sw[a-z]', 'build/<%= pkg.version %>/**/.gitignore'],
+      ext: ['build/<%= pkg.version %>/{doc,img,html,json}'],
       src: ['build/<%= pkg.version %>*', 'instance/<%= pkg.version %>.html']
     },
     compress: {
@@ -194,15 +195,26 @@ module.exports = function( grunt ){
             }
           ],
           //optimize: 'none', //'uglify' by default
-          optimizeCss: 'standard', //'standard.keepLines' by default
-          paths: {
-            main: '../main'
-          },
+          optimizeCss: 'none', //'standard', //'standard.keepLines' by default
           cssImportIgnore: 'bootstrap/2.3.1/min.css, bootstrap/2.3.1/responsive/min.css',
           skipDirOptimize: true, // skip optimization on non-build files
           keepBuildDir: false, // delete the build directory before each run
-          //removeCombined: true, // eliminate duplicate (combined) files from build
+          removeCombined: true, // eliminate duplicate (combined) files from build
           preserveLicenseComments: false, // preserve only JSDoc-style @license
+        }
+      }
+    },
+    protractor: {
+      options: {
+        configFile: 'system/src/test/example/e2e/config.js',
+        //keepAlive: true,
+        //debug: true,
+        args: {}
+      },
+      test: {
+        options: {
+          //specs: ['system/src/test/example/e2e/scenario.js'],
+          args: {}
         }
       }
     },
@@ -218,8 +230,9 @@ module.exports = function( grunt ){
           }]
         },
         files: [
-          {src: ['instance/index.html'], dest: './'},
-          {src: ['system/src/main.js'], dest: './'}
+          //{src: ['instance/<%= pkg.version %>.html'], dest: './'},
+          {src: ['instance/index.html'], dest: 'instance/<%= pkg.version %>.html'},
+          {src: ['build/<%= pkg.version %>/src/main.js'], dest: './'}
         ]
       },
       tag: {
@@ -250,7 +263,7 @@ module.exports = function( grunt ){
         ]
       }
     },
-    requirejs: {
+    rjs: {
       compile: {
         options: {
           appDir: 'system',
@@ -510,6 +523,7 @@ module.exports = function( grunt ){
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('doc', [
@@ -523,22 +537,23 @@ module.exports = function( grunt ){
     'qunit'
   ]);
   grunt.registerTask('version', [
-    'replace:build',
-    //'requirejs',
+    //'rjs',
     'ngr',
+    'replace:build',
+    'clean:ext',
+    //'copy',
     //'concat',
-    'copy',
-    'uglify',
+    //'uglify',
     'cssmin',
     'htmlmin',
     'clean:dot',
-    'compress',
-    'replace:zero'
+    'compress'
   ]);
   grunt.registerTask('default', [
     'clean',
     'jsdoc',
     'test',
+    'protractor',
     'build'
   ]);
 };

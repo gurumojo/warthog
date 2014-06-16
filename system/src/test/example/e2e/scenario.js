@@ -1,234 +1,313 @@
 /**
- * angularity scenario
- *
- * @author theguy@gurumojo.net
- * @package angularity
- * @subpackage scenario
- * @version 0.0.0
+ * @summary
+ *  AngularJS Protractor
+ * @description
+ *  End-to-End Testing Scenarios
+ * @see
+ *  https://docs.angularjs.org/guide/e2e-testing
  */
-'use strict';
+describe('example', function(){
+	'use strict';
 
-/**
- * AngularJS Scenario
- * @see http://docs.angularjs.org/guide/dev_guide.e2e-testing
- * @todo provide element.dblclick() method
- */
-describe('app', function(){
-
-	beforeEach(function(){
-		browser().navigateTo('../../../var/index.html');
-	});
-
+	/**
+	 * @summary
+	 *  example.home
+	 */
 	describe('home', function(){
 
 		beforeEach(function(){
-			browser().navigateTo('#/home');
+			browser.get('#/home');
 		});
 
 		it('includes an element using the appDebug directive', function(){
 
-			var debug = element('[app-debug]'),
-				trans = element('[ng-transclude] > *');
-			expect(debug.attr('app-debug')).toBe('Home Page');
-			expect(trans.text()).toContain('location');
-			expect(trans.count()).toBe(1);
-		});
-
-		it('responds to click events in the appDebug directive', function(){
-
-			var header = element('[app-debug] > header'),
-				section = element('[app-debug] > section');
-			expect(section.css('display')).toBe('none');
-			header.click();
-			expect(section.css('display')).toBe('block');
-			header.click();
-			expect(section.css('display')).toBe('none');
+			var debug = element(by.css('[app-debug]'));
+			expect(debug.getAttribute('app-debug')).toBe('Home Page');
 		});
 
 		it('includes an element using the inputTextEditor directive', function(){
 
-			var span = element('[input-text-editor] > span'),
-				input = element('[input-text-editor] > input');
-			expect(input.attr('ng-model')).toBe('content.name');
+			var span = element.all(by.css('[input-text-editor] > span'));
+			var input = element.all(by.css('[input-text-editor] > input'));
 			expect(input.count()).toBe(1);
 			expect(span.count()).toBe(1);
 		});
 
-		it('binds input/output elements in the inputTextEditor directive', function(){
-
-			var viewer = element('[input-text-editor] > span'),
-				editor = element('[input-text-editor] > input');
-			expect(editor.val()).toBe('Hola Mundo');
-			expect(viewer.html()).toBe('Hola Mundo');
-			input('content.name').enter('inputTextEditor');
-			expect(editor.val()).toBe('inputTextEditor');
-			expect(viewer.html()).toBe('inputTextEditor');
-		});
-
-		it('responds to click/blur events in the inputTextEditor directive', function(){
-
-			var el = element('[input-text-editor]'),
-				span = element('[input-text-editor] > span'),
-				input = element('[input-text-editor] > input');
-			expect(input.css('display')).toBe('none');
-			expect(span.css('display')).toBe('block');
-			el.dblclick();
-			expect(input.css('display')).toBe('block');
-			expect(span.css('display')).toBe('none');
-			input.query(function(test, done){
-				test[0].blur();
-				done();
-			});
-			expect(input.css('display')).toBe('none');
-			expect(span.css('display')).toBe('block');
-		});
-
 		it('includes an element using the textareaEditor directive', function(){
 
-			var span = element('[textarea-editor] > span'),
-				textarea = element('[textarea-editor] > textarea');
-			expect(textarea.attr('ng-model')).toBe('content.description');
+			var span = element.all(by.css('[textarea-editor] > span'));
+			var textarea = element.all(by.css('[textarea-editor] > textarea'));
 			expect(textarea.count()).toBe(1);
 			expect(span.count()).toBe(1);
 		});
 
-		it('binds input/output elements in the textareaEditor directive', function(){
+		/**
+		 * @summary
+		 *  example.home.appDebug
+		 */
+		describe('appDebug', function(){
 
-			var span = element('[textarea-editor] > span'),
-				textarea = element('[textarea-editor] > textarea');
-			expect(textarea.val()).toBe('A typical "Hello World" example');
-			expect(span.html()).toBe('A typical "Hello World" example');
-			input('content.description').enter('textareaEditor');
-			expect(textarea.val()).toBe('textareaEditor');
-			expect(span.html()).toBe('textareaEditor');
+			it('displays appDebug output in preformatted text', function(){
+
+				var scope = element(by.css('[app-debug] pre.ng-scope'));
+				expect(scope.getInnerHtml()).toContain('location');
+			});
+
+			it('opens and closes on appDebug header click events', function(){
+
+				var header = element(by.css('[app-debug] > header'));
+				var section = element(by.css('[app-debug] > section'));
+				expect(section.isDisplayed()).toBe(false);
+				header.click();
+				expect(section.isDisplayed()).toBe(true);
+				header.click();
+				expect(section.isDisplayed()).toBe(false);
+			});
 		});
 
-		it('responds to click/blur events in the textareaEditor directive', function(){
+		/**
+		 * @summary
+		 *  example.home.inputTextEditor
+		 */
+		describe('inputTextEditor', function(){
 
-			var el = element('[textarea-editor]'),
-				span = element('[textarea-editor] > span'),
-				textarea = element('[textarea-editor] > textarea');
-			expect(span.css('display')).toBe('block');
-			expect(textarea.css('display')).toBe('none');
-			el.click();
-			expect(span.css('display')).toBe('none');
-			expect(textarea.css('display')).toBe('block');
-			textarea.query(function(test, done){
-				test[0].blur();
-				done();
+			it('provides a model input for content.name', function(){
+
+				var input = element(by.model('content.name'));
+				expect(input.getTagName()).toBe('input');
 			});
-			expect(span.css('display')).toBe('block');
-			expect(textarea.css('display')).toBe('none');
+
+			it('binds a display span to content.name', function(){
+
+				var span = element(by.binding('content.name'));
+				expect(span.getTagName()).toBe('span');
+			});
+
+			it('shows the input when the span is double-clicked', function(){
+
+				var input = element(by.model('content.name'));
+				var span = element(by.binding('content.name'));
+				expect(input.isDisplayed()).toBe(false);
+				expect(span.isDisplayed()).toBe(true);
+				browser.actions().doubleClick(span).perform();
+				expect(input.isDisplayed()).toBe(true);
+				expect(span.isDisplayed()).toBe(false);
+			});
+
+			it('updates the span when the input changes', function(){
+
+				var input = element(by.model('content.name'));
+				var span = element(by.binding('content.name'));
+				var header = element(by.css('.navbar'));
+				span.getText().then(function(text){
+					browser.actions().doubleClick(span).perform();
+					input.sendKeys('!');
+					browser.actions().click(header).perform();
+					span.getText().then(function(update){
+						expect(update).toBe(text +'!');
+					});
+				});
+			});
+
+			it('shows the span when when the input is blurred', function(){
+
+				var input = element(by.model('content.name'));
+				var span = element(by.binding('content.name'));
+				var header = element(by.css('.navbar'));
+				browser.actions().doubleClick(span).perform();
+				expect(input.isDisplayed()).toBe(true);
+				expect(span.isDisplayed()).toBe(false);
+				browser.actions().click(header).perform();
+				expect(input.isDisplayed()).toBe(false);
+				expect(span.isDisplayed()).toBe(true);
+			});
+		});
+
+		/**
+		 * @summary
+		 *  example.home.textareaEditor
+		 */
+		describe('textareaEditor', function(){
+
+			it('provides a model input for content.description', function(){
+
+				var textarea = element(by.model('content.description'));
+				expect(textarea.getTagName()).toBe('textarea');
+			});
+
+			it('binds a display span to content.description', function(){
+
+				var span = element(by.binding('content.description'));
+				expect(span.getTagName()).toBe('span');
+			});
+
+			it('shows the textarea when the span is clicked', function(){
+
+				var textarea = element(by.model('content.description'));
+				var span = element(by.binding('content.description'));
+				expect(textarea.isDisplayed()).toBe(false);
+				expect(span.isDisplayed()).toBe(true);
+				browser.actions().click(span).perform();
+				expect(textarea.isDisplayed()).toBe(true);
+				expect(span.isDisplayed()).toBe(false);
+			});
+
+			it('updates the span when the textarea changes', function(){
+
+				var textarea = element(by.model('content.description'));
+				var span = element(by.binding('content.description'));
+				var header = element(by.css('.navbar'));
+				span.getText().then(function(text){
+					browser.actions().click(span).perform();
+					textarea.sendKeys('!');
+					browser.actions().click(header).perform();
+					span.getText().then(function(update){
+						expect(update).toBe('!'+ text);
+					});
+				});
+			});
+
+			it('shows the span when when the textarea is blurred', function(){
+
+				var textarea = element(by.model('content.description'));
+				var span = element(by.binding('content.description'));
+				var header = element(by.css('.navbar'));
+				browser.actions().doubleClick(span).perform();
+				expect(textarea.isDisplayed()).toBe(true);
+				expect(span.isDisplayed()).toBe(false);
+				browser.actions().click(header).perform();
+				expect(textarea.isDisplayed()).toBe(false);
+				expect(span.isDisplayed()).toBe(true);
+			});
 		});
 	});
 
+	/**
+	 * @summary
+	 *  example.login
+	 */
 	describe('login', function(){
 
 		beforeEach(function(){
-			browser().navigateTo('#/login');
+			browser.get('#/login');
 		});
 
-		it('renders a login form in the userSession directive', function(){
+		it('includes an element using the userSession directive', function(){
 
-			var form = element('[user-session] > form[name=auth]'),
-				field = element('[user-session] > form[name=auth] > input'),
-				label = element('[user-session] > form[name=auth] > label'),
-				legend = element('[user-session] > form[name=auth] > legend'),
-				button = element('[user-session] > form[name=auth] > button');
-			expect(form.attr('ng-hide')).toBe('active');
-			expect(field.count()).toBe(3);
-			expect(label.count()).toBe(2);
-			expect(legend.count()).toBe(1);
-			expect(button.count()).toBe(2);
+			var session = element.all(by.css('[user-session]'));
+			expect(session.count()).toBe(1);
 		});
 
-		it('renders a profile form in the userSession directive', function(){
+		/**
+		 * @summary
+		 *  example.login.userSession
+		 */
+		describe('userSession', function(){
 
-			var form = element('[user-session] > form[name=edit]'),
-				field = element('[user-session] > form[name=edit] > input'),
-				label = element('[user-session] > form[name=edit] > label'),
-				legend = element('[user-session] > form[name=edit] > legend'),
-				button = element('[user-session] > form[name=edit] > button');
-			expect(form.attr('ng-show')).toBe('active');
-			expect(field.count()).toBe(5);
-			expect(label.count()).toBe(5);
-			expect(legend.count()).toBe(1);
-			expect(button.count()).toBe(3);
-		});
+			it('provides a model input for user.username', function(){
 
-		it('binds model input elements in the userSession directive', function(){
+				var input = element(by.model('user.username'));
+				expect(input.getTagName()).toBe('input');
+			});
 
-			var user = element('[user-session] > form[name=auth] > input[name=username]'),
-				pass = element('[user-session] > form[name=auth] > input[name=password]');
-			expect(user.val()).toBe('');
-			expect(pass.val()).toBe('');
-			input('user.username').enter('username');
-			input('user.password').enter('password');
-			expect(user.val()).toBe('username');
-			expect(pass.val()).toBe('password');
-		});
+			it('provides a model input for user.password', function(){
 
-		it('disables buttons per validation in the userSession directive', function(){
+				var input = element(by.model('user.password'));
+				expect(input.getTagName()).toBe('input');
+			});
 
-			var login = element('[user-session] > form[name=auth] > button[ng-click="login()"]'),
-				resat = element('[user-session] > form[name=auth] > button[ng-click="reset()"]'),
-				reset = element('[user-session] > form[name=edit] > button[ng-click="reset()"]'),
-				update = element('[user-session] > form[name=edit] > button[ng-click="update()"]');
-			expect(login.prop('disabled')).toBe(true);
-			expect(resat.prop('disabled')).toBe(true);
-			expect(reset.prop('disabled')).toBe(true);
-			expect(update.prop('disabled')).toBe(true);
-			input('user.username').enter('username');
-			expect(login.prop('disabled')).toBe(true);
-			expect(resat.prop('disabled')).toBe(false);
-			expect(reset.prop('disabled')).toBe(false);
-			input('user.password').enter('password');
-			expect(login.prop('disabled')).toBe(false);
-			expect(reset.prop('disabled')).toBe(false);
-			input('user.avatar').enter('avatar');
-			input('user.email').enter('email@any.net');
-			input('user.family_name').enter('family_name');
-			input('user.given_name').enter('given_name');
-			input('user.handle').enter('handle');
-			expect(resat.prop('disabled')).toBe(false);
-			expect(reset.prop('disabled')).toBe(false);
-			expect(update.prop('disabled')).toBe(false);
-		});
+			it('renders a login form', function(){
+	
+				var form = element(by.css('[user-session] > form[name=auth]'));
+				var field = element.all(by.css('[user-session] > form[name=auth] > input'));
+				var label = element.all(by.css('[user-session] > form[name=auth] > label'));
+				var legend = element.all(by.css('[user-session] > form[name=auth] > legend'));
+				var button = element.all(by.css('[user-session] > form[name=auth] > button'));
+				expect(form.getAttribute('ng-hide')).toBe('active');
+				expect(field.count()).toBe(3);
+				expect(label.count()).toBe(2);
+				expect(legend.count()).toBe(1);
+				expect(button.count()).toBe(2);
+			});
+	
+			it('renders a profile form', function(){
+	
+				var form = element(by.css('[user-session] > form[name=edit]'));
+				var field = element.all(by.css('[user-session] > form[name=edit] > input'));
+				var label = element.all(by.css('[user-session] > form[name=edit] > label'));
+				var legend = element.all(by.css('[user-session] > form[name=edit] > legend'));
+				var button = element.all(by.css('[user-session] > form[name=edit] > button'));
+				expect(form.getAttribute('ng-show')).toBe('active');
+				expect(field.count()).toBe(5);
+				expect(label.count()).toBe(5);
+				expect(legend.count()).toBe(1);
+				expect(button.count()).toBe(3);
+			});
 
-		it('updates scope per status in the userSession directive', function(){
+			it('disables buttons per directive validation', function(){
 
-			var auth = element('[user-session] > form[name=auth] > input[name=session]'),
-				user = element('[user-session] > form[name=auth] > input[name=username]'),
-				pass = element('[user-session] > form[name=auth] > input[name=password]'),
-				login = element('[user-session] > form[name=auth] > button[ng-click="login()"]'),
-				logout = element('[user-session] > form[name=edit] > button[ng-click="logout()"]');
-			input('user.username').enter('username');
-			login.click();
-			expect(auth.val()).toBe('0');
-			expect(user.val()).toBe('username');
-			expect(pass.val()).toBe('');
-			input('user.password').enter('password');
-			expect(pass.val()).toBe('password');
-			login.click();
-			expect(auth.val()).toBe('1');
-			expect(user.val()).toBe('');
-			expect(pass.val()).toBe('');
-			logout.click();
-			expect(auth.val()).toBe('0');
-			expect(user.val()).toBe('');
-			expect(pass.val()).toBe('');
+				var username = element(by.model('user.username'));
+				var password = element(by.model('user.password'));
+				var avatar = element(by.model('user.avatar'));
+				var email = element(by.model('user.email'));
+				var family_name = element(by.model('user.family_name'));
+				var given_name = element(by.model('user.given_name'));
+				var handle = element(by.model('user.handle'));
+				var auth = {
+					login: element(by.css('[user-session] > form[name=auth] > button[ng-click="login()"]')),
+					reset: element(by.css('[user-session] > form[name=auth] > button[ng-click="reset()"]'))
+				};
+				var edit = {
+					logout: element(by.css('[user-session] > form[name=edit] > button[ng-click="logout()"]')),
+					reset: element(by.css('[user-session] > form[name=edit] > button[ng-click="reset()"]')),
+					update: element(by.css('[user-session] > form[name=edit] > button[ng-click="update()"]'))
+				};
+				expect(auth.login.isDisplayed()).toBe(true);
+				expect(auth.reset.isDisplayed()).toBe(true);
+				expect(edit.logout.isDisplayed()).toBe(false);
+				expect(edit.reset.isDisplayed()).toBe(false);
+				expect(edit.update.isDisplayed()).toBe(false);
+				expect(auth.login.isEnabled()).toBe(false);
+				expect(auth.reset.isEnabled()).toBe(false);
+				username.sendKeys('username');
+				expect(auth.login.isEnabled()).toBe(false);
+				expect(auth.reset.isEnabled()).toBe(true);
+				password.sendKeys('password');
+				expect(auth.login.isEnabled()).toBe(true);
+				expect(auth.reset.isEnabled()).toBe(true);
+				/**
+				 * @todo
+				 *  enable edit form to complete button toggle tests
+				 */
+				//avatar.sendKeys('avatar');
+				//email.sendKeys('email');
+				//family_name.sendKeys('family_name');
+				//given_name.sendKeys('given_name');
+				//handle.sendKeys('handle');
+				//expect(edit.logout.isEnabled()).toBe(true);
+				//expect(edit.reset.isEnabled()).toBe(true);
+				//expect(edit.update.isEnabled()).toBe(true);
+			});
 		});
 	});
 
+	/**
+	 * @summary
+	 *  example redirect
+	 */
 	it('redirects to /home when location hash is not matched', function(){
 
-		browser().navigateTo('#/abcdefg');
-		expect(browser().location().url()).toBe("/home");
+		browser.get('#/abcdefg');
+		expect(browser.getCurrentUrl()).toMatch(/\/home$/);
 	});
 
+	/**
+	 * @summary
+	 *  default route
+	 */
 	it('redirects to /home when location hash is empty', function(){
 
-		browser().navigateTo('#');
-		expect(browser().location().url()).toBe("/home");
+		browser.get('#');
+		expect(browser.getCurrentUrl()).toMatch(/\/home$/);
 	});
 });

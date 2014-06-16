@@ -31,7 +31,7 @@ The example package may be run from the command line using Node.  Source file do
 
 ### Run the application build tasks
 
-The default Grunt task will clean temporary files, build [JSDoc](http://usejsdoc.org/) API documentation from inline comments, perform [JSHint](http://jshint.com/) and [CSSLint](http://csslint.net/) code quality checks, run [QUnit](http://qunitjs.com/) assertion testing, and then use various grunt-contrib-*, other NPM, and custom plugins to test, combine and minimize application code into a build using the version detailed in package.json:
+The default Grunt task will clean temporary files, build [JSDoc](http://usejsdoc.org/) API documentation from inline comments, perform [JSHint](http://jshint.com/) and [CSSLint](http://csslint.net/) code quality checks, run [Jasmine](http://jasmine.github.io/) and [QUnit](http://qunitjs.com/) assertion testing, and then use various grunt-contrib-*, other NPM, and custom plugins to test, combine and minimize application code into a build using the version detailed in package.json:
 
 >`grunt`
 
@@ -47,7 +47,7 @@ This task will build the requested semantic version.
 
 >`grunt build:tag:0.0.1`
 
-This alias task will run CSSLint, JSHint and QUnit:
+This alias task will run CSSLint, JSHint, Jasmine and QUnit:
 
 >`grunt test`
 
@@ -102,6 +102,14 @@ This task performs code quality checks:
 
 >`grunt jshint`
 
+This task runs the r.js optimizer for ngDefine modules:
+
+>`grunt ngr`
+
+This task runs protractor end-to-end tests:
+
+>`grunt protractor`
+
 This task runs QUnit tests:
 
 >`grunt qunit`
@@ -110,9 +118,9 @@ This task substitutes semantic version strings in files:
 
 >`grunt replace`
 
-This task runs the r.js optimizer:
+This task runs the r.js optimizer for AMD modules:
 
->`grunt requirejs`
+>`grunt rjs`
 
 This task tags the working environment to use a specific build:
 
@@ -214,6 +222,7 @@ Filesystem
 			- profile (response stub)
 	- lib/ (external library symlinks)
 		- angular.js (Bower module angular)
+		- angular-mocks.js (Bower module angular-mocks)
 		- angular-route.js (Bower module angular-route)
 		- ngDefine.js (Bower module requirejs-angular-define)
 		- ngParse.js (Bower module requirejs-angular-define)
@@ -237,6 +246,11 @@ Filesystem
 		- test/ (unit and functional tests)
 			- jasmine.js (test config)
 			- qunit.js (test config)
+			- example/ (AngularJS tests)
+				- index.html (test runner)
+				- e2e/ (end to end scenarios for src/lib/example)
+				- lib/ (Angular testing dependencies)
+				- unit/ (module specs for src/lib/example)
 			- jasmine/ (Jasmine tests)
 				- Example.js (spec for src/lib/Example.js)
 				- index.html (test runner)
