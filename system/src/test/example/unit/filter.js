@@ -8,31 +8,29 @@
  */
 define([
 
-	'ngDefine', 'angular', 'angular-mocks'
+	'../../../lib/example/filter.js'
 
 ], function(ngDefine){
 	'use strict';
 
-	require(['../../lib/example/filter.js'], function(){
-		/**
-		 * Filter Scenarios for Jasmine
-		 */
-		describe('filter', function(){
-		
-			beforeEach(module('example.filter'));
-		
-			describe('interpolateVersion', function(){
-		
-				beforeEach(module(function($provide){
-					$provide.value('meta', {version: 'test'});
-				}));
-		
-				it('should replace VERSION', inject(function(interpolateVersionFilter){
-		
-					expect(interpolateVersionFilter('before %VERSION% after')).
-						toEqual('before test after');
-				}));
-			});
+	/**
+	 * Filter Scenarios for Jasmine
+	 */
+	describe('filter', function(){
+	
+		beforeEach(module('example.filter'));
+	
+		describe('interpolateVersion', function(){
+	
+			beforeEach(module(function($provide){
+				$provide.value('meta', {version: 'test'});
+			}));
+	
+			it('should replace VERSION', inject(function(interpolateVersionFilter){
+	
+				expect(interpolateVersionFilter('before %VERSION% after')).
+					toEqual('before test after');
+			}));
 		});
 	});
 });

@@ -2,6 +2,7 @@ module.exports = function( grunt ){
 
   var fs = require('fs');
   var semver = require('semver');
+  var spawn = require('child_process').spawn;
   var stripcolorcodes = require('stripcolorcodes');
 
   grunt.initConfig({
@@ -41,6 +42,12 @@ module.exports = function( grunt ){
       server: {
         options: {
           hostname: '*'
+        }
+      },
+      e2e: {
+        options: {
+          hostname: '*',
+          port: 8888
         }
       }
     },
@@ -105,26 +112,29 @@ module.exports = function( grunt ){
     },
     jasmine: {
       src: {
+        src: 'system/src/test/jasmine.js',
         options: {
           keepRunner: true,
           outfile: 'system/src/test/jasmine/index.html',
-          specs: 'system/src/test/jasmine/**/*.js',
-          template: require('grunt-template-jasmine-requirejs'),
+          specs: 'system/src/test/jasmine/unit/*.js',
+          //template: require('grunt-template-jasmine-requirejs'),
+          template: require('./system/src/test/jasmine/template.js'),
           templateOptions: {
-            requireConfigFile: 'system/src/test/jasmine.js'
+            //requireConfigFile: 'system/src/test/jasmine.js'
           }
         }
       },
       ng: {
-        //src: 'system/src/lib/example/**/*.js'
+        src: 'system/src/test/example.js',
         options: {
           keepRunner: true,
           outfile: 'system/src/test/example/index.html',
           specs: 'system/src/test/example/unit/*.js',
-          template: require('grunt-template-jasmine-requirejs'),
-          //template: require('warthog-jasmine'),
+          //helpers: 'system/lib/ng*.js',
+          template: require('./system/src/test/example/template.js'),
           templateOptions: {
-            requireConfigFile: 'system/src/test/example.js'
+			require: ['ngDefine', 'angular', 'angular-mocks', 'angular-route'],
+            callback: function(){ /* onLoad */ }
           }
         }
       }
@@ -310,28 +320,171 @@ module.exports = function( grunt ){
       }
     },
     watch: {
-        files: ['README.md', '<%= jshint.src %>'],
-        tasks: ['test']
+      files: ['README.md', '<%= jshint.src %>'],
+      tasks: ['unit']
+    },
+    selenium: {
+      webdriver: {
+      	//executable: '',
+      	//keyword: ''
+      }
     }
   });
 
   /**
    * @summary Command Runner
    * @see http://stackoverflow.com/questions/14458508/node-js-shell-command-execution
+   * @requires {object} child_process#spawn
    * @param {string} cmd - shell executable
    * @param {array} args - command arguments
    * @param {function} done - output callback
+   * @return {object} process
    * @example
    *  shell('ls', ['-l'], function(text){ console.log(text); });
-   *  shell('hostname', [], function(text){ console.log(text); });
+   *  shell('hostname', [], console.log);
    */
   function shell(cmd, args, done){
-    var spawn = require('child_process').spawn;
     var child = spawn(cmd, args);
     var stdout = '';
     child.stdout.on('data', function(buffer){ stdout += buffer.toString(); });
-    child.stdout.on('end', function(){ done(stdout); });
+    child.stdout.on('close', function(){ done(stdout); });
+    return child;
   }
+
+  /**
+   * @summary
+   *  Kill Process
+   * @requires
+   *  {function} shell
+   * @param
+   *  {string} pid - process to kill
+   * @param
+   *  {function} done - callback function
+   * @example
+   *  `kill -9 [pid]`
+   */
+  function kill(pid, done){
+    var kill = shell('kill', ['-9', pid.trim()], function(){
+      grunt.verbose.writeln('kill -9', pid);
+      try {
+        done();
+      } catch(x) {
+        grunt.warn(x.stack);
+      }
+    });
+    kill.stderr.on('data', function(data){
+      grunt.log.warn(data);
+    });
+  }
+
+  /**
+   * @summary
+   *  Process Snapshot for User
+   * @requires
+   *  {function} shell
+   * @param
+   *  {object} destination - process pipe endpoint
+   * @example
+   *  `ps u | grep -v grep | [destination]`
+   */
+  function psu(destination){
+    var filter = shell('grep', ['-v', 'grep'], function(result){
+      grunt.verbose.write(result);
+    });
+    filter.on('close', function(code, signal){
+      grunt.verbose.writeln('filter: { exit:', code, ', signal:', signal, '}');
+      destination.stdin.end();
+    });
+    filter.stdout.on('data', function(data){
+      destination.stdin.write(data);
+    });
+    var ps = shell('ps', ['u'], function(){});
+    ps.on('close', function(code, signal){
+      filter.stdin.end();
+    });
+    ps.stdout.on('data', function(data){
+      filter.stdin.write(data);
+    });
+  }
+
+  /**
+   * @summary Selenium WebDriver
+   * @see protractor
+   * @requires {function} psu
+   */
+  grunt.registerMultiTask('selenium', 'Selenium WebDriver', function(){
+    var selenium, grep, awk;
+    var task = this.args[0];
+    var done = this.async();
+    var options = this.options({
+      executable: 'node_modules/protractor/bin/webdriver-manager',
+      keyword: 'protractor/selenium'
+    });
+    grunt.log.ok(task);
+    switch(task){
+      case 'update':
+        /* falls through */
+      case 'status':
+        selenium = shell(options.executable, [task], function(result){
+          grunt.log.write(result);
+          done();
+        });
+        break;
+      case 'start':
+        selenium = shell(options.executable, [task], function(result){
+          grunt.verbose.write(result);
+        });
+        grep = shell('grep', ['-c', options.keyword], function(result){
+          if (result > 0) {
+            grunt.verbose.writeln(options.executable, 'process', selenium.pid);
+            done();
+          } else {
+            grunt.warn('Failed to start', options.executable, 'process.');
+          }
+        });
+        setTimeout(function(){
+          psu(grep);
+        }, 1000);
+        break;
+      case 'stop':
+        //`awk '{print substr($2, 0)}'`
+        awk = shell('awk', ['{print substr($2, 0)}'], function(process){
+          kill(process, done);
+        });
+        grep = shell('grep', [options.keyword], function(result){
+          if (result) {
+            grunt.verbose.writeln(result);
+          } else {
+            grunt.warn('Failed to find '+ options.keyword +' process.');
+          }
+        });
+        grep.stdout.on('data', function(data){
+          awk.stdin.write(data);
+        });
+        grep.on('close', function(code, signal){
+          grunt.verbose.writeln('grep: { exit:', code, ', signal:', signal, '}');
+          awk.stdin.end();
+        });
+        psu(grep);
+        break;
+      default:
+        grunt.warn('Unsupported argument.');
+    }
+  });
+    //var psTree = require('ps-tree');
+    //var spawn = require('child_process').spawn;
+    //    psTree(selenium.pid, function(error, children){
+    //      if(children.length){
+    //        grunt.task.run(['protractor:test']);
+    //      } else {
+    //        grunt.log.write(result);
+    //      }
+    //      setTimeout(function(){
+    //        children.forEach(function(child){
+    //          spawn('kill', ['-9', child.PID]);
+    //        });
+    //      }, 10000);
+    //    });
 
   /**
    * @summary Build Task
@@ -495,7 +648,9 @@ module.exports = function( grunt ){
     }
   });
 
-  /** @summary AngularJS Optimization */
+  /**
+   * @summary AngularJS Optimization
+   */
   grunt.registerMultiTask('ngr', 'Optimization with r.js via ngDefine', function() {
     var done = this.async();
     var ngr = require('./bower_components/requirejs-angular-define/src/ngr.js');
@@ -530,7 +685,13 @@ module.exports = function( grunt ){
     'clean:doc',
     'jsdoc'
   ]);
-  grunt.registerTask('test', [
+  grunt.registerTask('e2e', [
+    'connect:e2e',
+    'selenium:webdriver:start',
+    'protractor',
+    'selenium:webdriver:stop'
+  ]);
+  grunt.registerTask('unit', [
     'csslint',
     'jshint',
     'jasmine',
@@ -552,8 +713,8 @@ module.exports = function( grunt ){
   grunt.registerTask('default', [
     'clean',
     'jsdoc',
-    'test',
-    'protractor',
+    'unit',
+    'e2e',
     'build'
   ]);
 };

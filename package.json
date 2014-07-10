@@ -1,12 +1,13 @@
 {
   "name": "warthog",
   "version": "0.1.4",
-  "description": "A full stack application template using Node, Grunt, Bower, RequireJS and AngularJS.",
+  "description": "A full stack Node application template using Grunt, Bower, RequireJS and AngularJS.",
   "license": "MIT",
   "main": "system/src/main",
   "scripts": {
-    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js system/src/test/example/unit/ --verbose --matchall",
-    "postinstall": "bower install && system/src/bugfix.sh"
+    "postinstall": "system/bin/postinstall.sh",
+    "postupdate": "system/bin/postinstall.sh",
+    "test": "system/bin/test.sh"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,7 @@
     "grunt-contrib-csslint": "~0.1.2",
     "grunt-contrib-cssmin": "~0.6.2",
     "grunt-contrib-htmlmin": "~0.1.3",
-    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-contrib-jasmine": "^0.6.5",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-qunit": "~0.3.0",
     "grunt-contrib-requirejs": "~0.4.1",
@@ -38,13 +39,15 @@
     "grunt-karma": "^0.8.3",
     "grunt-protractor-runner": "^1.0.0",
     "grunt-replace": "~0.5.1",
-    "grunt-template-jasmine-requirejs": "~0.1.8",
+    "grunt-template-jasmine-requirejs": "^0.2.0",
     "jasmine-node": "^1.14.3",
     "jsdoc": "~3.3.0",
     "karma": "^0.12.16",
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
+    "phantomjs": "^1.9.7-8",
     "protractor": "^0.23.1",
+    "ps-tree": "0.0.3",
     "semver": "~2.2.1",
     "stripcolorcodes": "~0.1.0"
   }

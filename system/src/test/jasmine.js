@@ -17,7 +17,7 @@ if(require.config){
 	 * @since 0.0.2
 	 */
 	require.config({
-		baseUrl: '../../lib',
+		baseUrl: '../../../src/lib',
 		paths: {
 			underscore:  '../../lib/underscore'
 		},
@@ -27,7 +27,7 @@ if(require.config){
 			} 
 		}
 	});
-	require(['../test/jasmine/initialize']);
+	//require(['../test/jasmine/initialize']);
 } else {
 	/**
 	 * @summary RequireJS via Node

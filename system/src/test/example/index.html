@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -17,7 +17,6 @@
       } else {
         message += error.message;
       }
-
       throw Error(message);
     };
   </script>
@@ -28,65 +27,35 @@
   
   <script src="../../../../.grunt/grunt-contrib-jasmine/jasmine-html.js"></script>
   
+  <script src="../../../../.grunt/grunt-contrib-jasmine/boot.js"></script>
+  
   
 
   <script>
-    
-
-    
-      require.config({
-  "baseUrl": "../../lib",
-  "paths": {
-    "underscore": "../../lib/underscore",
-    "ngDefine": "../../lib/ngDefine",
-    "ngParse": "../../lib/ngParse",
-    "angular": "../../lib/angular",
-    "angular-mocks": "../../lib/angular-mocks",
-    "angular-route": "../../lib/angular-route"
-  },
-  "shim": {
-    "angular": {
-      "exports": "angular"
-    },
-    "angular-mocks": {
-      "deps": [
-        "angular"
-      ]
-    },
-    "angular-route": {
-      "deps": [
-        "angular"
-      ]
-    },
-    "underscore": {
-      "exports": "_"
-    }
-  }
-});
-    
-  </script>
-
-  <script>
-    function launchTest() {
+    // Delay onLoad function until we are ready
+    var startTests = window.onload;
+    window.onload = null;
     require([
+      
+        
+        '../example.js' 
       
     ],
     function(){
-      require(['unit/controller.js','unit/directive.js','unit/filter.js','unit/service.js','../../../../.grunt/grunt-contrib-jasmine/reporter.js'], function(){
-        require(['../../../../.grunt/grunt-contrib-jasmine/jasmine-helper.js'], function(){
-          // good to go! Our tests should already be running.
-        })
-      })
-    }
-    )
-  }
+      require(['ngDefine','angular','angular-mocks','angular-route'], function(){
+        require(['unit/controller.js','unit/directive.js','unit/filter.js','unit/service.js','../../../../.grunt/grunt-contrib-jasmine/reporter.js'], function(){
+          startTests();
+        });
+      });
+    });
   </script>
 
   
   <script>
-  launchTest();
+    (function (){ /* onLoad */ })()
   </script>
   
+
 </head>
 <body>
 </body>

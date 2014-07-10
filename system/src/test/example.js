@@ -41,7 +41,7 @@ if(require.config){
 			} 
 		}
 	});
-	require(['../test/example/initialize']);
+	//require(['../test/example/initialize']);
 } else {
 	/**
 	 * @summary RequireJS via Node

@@ -216,57 +216,91 @@ describe('example', function(){
 				expect(input.getTagName()).toBe('input');
 			});
 
-			it('renders a login form', function(){
-	
-				var form = element(by.css('[user-session] > form[name=auth]'));
-				var field = element.all(by.css('[user-session] > form[name=auth] > input'));
-				var label = element.all(by.css('[user-session] > form[name=auth] > label'));
-				var legend = element.all(by.css('[user-session] > form[name=auth] > legend'));
-				var button = element.all(by.css('[user-session] > form[name=auth] > button'));
-				expect(form.getAttribute('ng-hide')).toBe('active');
-				expect(field.count()).toBe(3);
-				expect(label.count()).toBe(2);
-				expect(legend.count()).toBe(1);
-				expect(button.count()).toBe(2);
-			});
-	
-			it('renders a profile form', function(){
-	
-				var form = element(by.css('[user-session] > form[name=edit]'));
-				var field = element.all(by.css('[user-session] > form[name=edit] > input'));
-				var label = element.all(by.css('[user-session] > form[name=edit] > label'));
-				var legend = element.all(by.css('[user-session] > form[name=edit] > legend'));
-				var button = element.all(by.css('[user-session] > form[name=edit] > button'));
-				expect(form.getAttribute('ng-show')).toBe('active');
-				expect(field.count()).toBe(5);
-				expect(label.count()).toBe(5);
-				expect(legend.count()).toBe(1);
-				expect(button.count()).toBe(3);
+			it('provides a model input for user.avatar', function(){
+
+				var input = element(by.model('user.avatar'));
+				expect(input.getTagName()).toBe('input');
 			});
 
-			it('disables buttons per directive validation', function(){
+			it('provides a model input for user.email', function(){
+
+				var input = element(by.model('user.email'));
+				expect(input.getTagName()).toBe('input');
+			});
+
+			it('provides a model input for user.family_name', function(){
+
+				var input = element(by.model('user.family_name'));
+				expect(input.getTagName()).toBe('input');
+			});
+
+			it('provides a model input for user.given_name', function(){
+
+				var input = element(by.model('user.given_name'));
+				expect(input.getTagName()).toBe('input');
+			});
+
+			it('provides a model input for user.handle', function(){
+
+				var input = element(by.model('user.handle'));
+				expect(input.getTagName()).toBe('input');
+			});
+
+			it('binds a hidden session input to active', function(){
+
+				var active = element(by.css('input[name=session]'));
+				expect(active.getAttribute('type')).toBe('hidden');
+			});
+
+			it('binds auth and edit form legend tags to legend', function(){
+
+				var legend = element.all(by.binding('legend'));
+				expect(legend.count()).toBe(2);
+				legend.each(function(x){
+					expect(x.getTagName()).toBe('legend');
+				});
+			});
+
+			it('renders an auth form (hidden for active sessions)', function(){
+
+				var form = element(by.css('[user-session] > form[name=auth]'));
+				expect(form.getAttribute('ng-hide')).toBe('active');
+			});
+
+			it('renders an edit form (shown for active sessions)', function(){
+
+				var form = element(by.css('[user-session] > form[name=edit]'));
+				expect(form.getAttribute('ng-show')).toBe('active');
+			});
+
+			it('shows the login form for inactive sessions', function(){
+
+				var auth = element(by.css('[user-session] > form[name=auth]'));
+				var edit = element(by.css('[user-session] > form[name=edit]'));
+				expect(auth.isDisplayed()).toBe(true);
+				expect(edit.isDisplayed()).toBe(false);
+			});
+
+			//it('shows the profile form for active sessions', function(){
+
+			//	var auth = element(by.css('[user-session] > form[name=auth]'));
+			//	var edit = element(by.css('[user-session] > form[name=edit]'));
+			//	/**
+			//	 * @todo
+			//	 *  implement login mocks
+			//	 */
+			//	expect(auth.isDisplayed()).toBe(false);
+			//	expect(edit.isDisplayed()).toBe(true);
+			//});
+
+			it('disables auth form buttons per directive validation', function(){
 
 				var username = element(by.model('user.username'));
 				var password = element(by.model('user.password'));
-				var avatar = element(by.model('user.avatar'));
-				var email = element(by.model('user.email'));
-				var family_name = element(by.model('user.family_name'));
-				var given_name = element(by.model('user.given_name'));
-				var handle = element(by.model('user.handle'));
 				var auth = {
 					login: element(by.css('[user-session] > form[name=auth] > button[ng-click="login()"]')),
 					reset: element(by.css('[user-session] > form[name=auth] > button[ng-click="reset()"]'))
 				};
-				var edit = {
-					logout: element(by.css('[user-session] > form[name=edit] > button[ng-click="logout()"]')),
-					reset: element(by.css('[user-session] > form[name=edit] > button[ng-click="reset()"]')),
-					update: element(by.css('[user-session] > form[name=edit] > button[ng-click="update()"]'))
-				};
-				expect(auth.login.isDisplayed()).toBe(true);
-				expect(auth.reset.isDisplayed()).toBe(true);
-				expect(edit.logout.isDisplayed()).toBe(false);
-				expect(edit.reset.isDisplayed()).toBe(false);
-				expect(edit.update.isDisplayed()).toBe(false);
 				expect(auth.login.isEnabled()).toBe(false);
 				expect(auth.reset.isEnabled()).toBe(false);
 				username.sendKeys('username');
@@ -275,19 +309,36 @@ describe('example', function(){
 				password.sendKeys('password');
 				expect(auth.login.isEnabled()).toBe(true);
 				expect(auth.reset.isEnabled()).toBe(true);
-				/**
-				 * @todo
-				 *  enable edit form to complete button toggle tests
-				 */
-				//avatar.sendKeys('avatar');
-				//email.sendKeys('email');
-				//family_name.sendKeys('family_name');
-				//given_name.sendKeys('given_name');
-				//handle.sendKeys('handle');
-				//expect(edit.logout.isEnabled()).toBe(true);
-				//expect(edit.reset.isEnabled()).toBe(true);
-				//expect(edit.update.isEnabled()).toBe(true);
 			});
+
+			//it('disables edit form buttons per directive validation', function(){
+
+			//	var avatar = element(by.model('user.avatar'));
+			//	var email = element(by.model('user.email'));
+			//	var family_name = element(by.model('user.family_name'));
+			//	var given_name = element(by.model('user.given_name'));
+			//	var handle = element(by.model('user.handle'));
+			//	var edit = {
+			//		logout: element(by.css('[user-session] > form[name=edit] > button[ng-click="logout()"]')),
+			//		reset: element(by.css('[user-session] > form[name=edit] > button[ng-click="reset()"]')),
+			//		update: element(by.css('[user-session] > form[name=edit] > button[ng-click="update()"]'))
+			//	};
+			//	/**
+			//	 * @todo
+			//	 *  implement login mocks
+			//	 */
+			//	expect(edit.logout.isEnabled()).toBe(true);
+			//	expect(edit.reset.isEnabled()).toBe(false);
+			//	expect(edit.update.isEnabled()).toBe(false);
+			//	avatar.sendKeys('avatar');
+			//	email.sendKeys('email@ng.io');
+			//	family_name.sendKeys('family_name');
+			//	given_name.sendKeys('given_name');
+			//	handle.sendKeys('handle');
+			//	expect(edit.logout.isEnabled()).toBe(true);
+			//	expect(edit.reset.isEnabled()).toBe(true);
+			//	expect(edit.update.isEnabled()).toBe(true);
+			//});
 		});
 	});
 
