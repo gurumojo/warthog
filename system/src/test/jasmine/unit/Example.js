@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'Example'
+	'pattern/Example'
 
 ], function(Example){
 

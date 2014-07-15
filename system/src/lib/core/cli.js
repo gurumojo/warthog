@@ -15,7 +15,7 @@
  */
 define([
 
-	'Example', 'ranch'
+	'pattern/Example', 'pattern/ranch'
 
 ], function(Example, ranch){
 

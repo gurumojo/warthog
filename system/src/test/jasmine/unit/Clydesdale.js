@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Clydesdale'
+	'underscore', 'pattern/Clydesdale'
 
 ], function(_, Clydesdale){
 

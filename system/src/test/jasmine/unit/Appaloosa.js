@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Appaloosa'
+	'underscore', 'pattern/Appaloosa'
 
 ], function(_, Appaloosa){
 

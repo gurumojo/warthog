@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Mammal'
+	'underscore', 'pattern/Mammal'
 
 ], function(_, Mammal){
 

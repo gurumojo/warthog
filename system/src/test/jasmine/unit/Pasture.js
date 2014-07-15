@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Pasture', 'Horse'
+	'underscore', 'pattern/Pasture', 'pattern/Horse'
 
 ], function(_, Pasture, Horse){
 

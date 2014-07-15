@@ -7,12 +7,12 @@
  * @requires {@link module:Horse Horse}
  * @module Wrangler
  * @description
- *  This module returns a constructor of type {@link Wrangler}, an
- *  augmented {@link Human} type.
+ *  This module returns a constructor of type Wrangler, an augmented
+ *  Human type.
  */
 define([
 
-	'underscore', 'Human', 'Horse'
+	'underscore', 'pattern/Human', 'pattern/Horse'
 
 ], function(_, Human, Horse){
 

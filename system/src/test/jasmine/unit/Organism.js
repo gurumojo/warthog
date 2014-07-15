@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Organism'
+	'underscore', 'pattern/Organism'
 
 ], function(_, Organism){
 

@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Cache'
+	'underscore', 'pattern/Cache'
 
 ], function(_, Cache){
 

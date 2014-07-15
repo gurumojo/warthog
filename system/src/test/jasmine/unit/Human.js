@@ -1,7 +1,7 @@
 "use strict";
 define([
 
-	'underscore', 'Human'
+	'underscore', 'pattern/Human'
 
 ], function(_, Human){
 

@@ -5,7 +5,7 @@
  * @requires {@link http://underscorejs.org/ underscore}
  * @module Example
  * @description
- *  This module returns a constructor of type {@link Example}.
+ *  This module returns a constructor of type Example.
  */
 define([
 

@@ -10,7 +10,7 @@
  */
 define([
 
-	'Mammal'
+	'pattern/Mammal'
 
 ], function(Mammal){
 

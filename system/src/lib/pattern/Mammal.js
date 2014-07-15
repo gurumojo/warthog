@@ -5,12 +5,12 @@
  * @requires {@link module:Organism Organism}
  * @module Mammal
  * @description
- *  This module returns a constructor of type {@link Mammal}, an
- *  augmented {@link Organism} type.
+ *  This module returns a constructor of type Mammal, an augmented
+ *  Organism type.
  */
 define([
 
-	'Organism'
+	'pattern/Organism'
 
 ], function(Organism){
 

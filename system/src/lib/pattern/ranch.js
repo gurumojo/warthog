@@ -12,7 +12,7 @@
  */
 define([
 
-	'underscore', 'Corral', 'Pasture', 'Wrangler'
+	'underscore', 'pattern/Corral', 'pattern/Pasture', 'pattern/Wrangler'
 
 ], function(_, Corral, Pasture, Wrangler){
 

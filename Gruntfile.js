@@ -140,7 +140,7 @@ module.exports = function( grunt ){
       }
     },
     jsdoc: {
-      src: ['README.md', 'system/src/main.js', 'system/src/lib/*/**/*.js'],
+      src: ['README.md', 'system/src/main.js', 'system/src/lib/**/*.js', '!system/src/lib/pattern/*.js'],
       options: {
         destination: 'system/doc/'
       }

@@ -12,7 +12,7 @@
  */
 define([
 
-	'underscore', 'Cache', 'Horse'
+	'underscore', 'pattern/Cache', 'pattern/Horse'
 
 ], function(_, Cache, Horse){
 

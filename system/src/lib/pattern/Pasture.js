@@ -7,12 +7,12 @@
  * @requires {@link module:Horse Horse}
  * @module Pasture
  * @description
- *  This module returns a constructor of type {@link Pasture}, an
- *  augmented {@link Cache} type.
+ *  This module returns a constructor of type Pasture, an augmented
+ *  Cache type.
  */
 define([
 
-	'underscore', 'Cache', 'Horse'
+	'underscore', 'pattern/Cache', 'pattern/Horse'
 
 ], function(_, Cache, Horse){
 

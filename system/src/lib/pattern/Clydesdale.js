@@ -10,7 +10,7 @@
  */
 define([
 
-	'Horse'
+	'pattern/Horse'
 
 ], function(Horse){
 

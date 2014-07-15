@@ -6,12 +6,12 @@
  * @requires {@link module:Mammal Mammal}
  * @module Human
  * @description
- *  This module returns a constructor of type {@link Human}, an
- *  augmented {@link Mammal} type.
+ *  This module returns a constructor of type Human, an augmented
+ *  Mammal type.
  */
 define([
 
-	'underscore', 'Mammal'
+	'underscore', 'pattern/Mammal'
 
 ], function(_, Mammal){
 
