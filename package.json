@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "system/bin/postinstall.sh",
     "postupdate": "system/bin/postinstall.sh",
-    "test": "system/bin/test.sh"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",

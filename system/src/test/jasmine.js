@@ -5,10 +5,10 @@
  * @requires {@link initialize}
  * @description
  *  This module provides a single point of entry for execution of an
- *  example QUnit test suite via Node ({@link CLI}) or a browser
+ *  example Jasmine test suite via Node ({@link CLI}) or a browser
  *  ({@link DOM}).  After a quick test to determine the execution
  *  environment, a test config is loaded and the bootstrap process
- *  continues via {@link initialize}.
+ *  continues via {@link initialize} or grunt-contrib-jasmine.
  */
 if(require.config){
 	/**
@@ -27,7 +27,6 @@ if(require.config){
 			} 
 		}
 	});
-	//require(['../test/jasmine/initialize']);
 } else {
 	/**
 	 * @summary RequireJS via Node

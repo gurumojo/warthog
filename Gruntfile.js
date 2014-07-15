@@ -140,7 +140,7 @@ module.exports = function( grunt ){
       }
     },
     jsdoc: {
-      src: ['README.md', 'system/src/main.js', 'system/src/lib/**/*.js'],
+      src: ['README.md', 'system/src/main.js', 'system/src/lib/*/**/*.js'],
       options: {
         destination: 'system/doc/'
       }
@@ -691,9 +691,13 @@ module.exports = function( grunt ){
     'protractor',
     'selenium:webdriver:stop'
   ]);
-  grunt.registerTask('unit', [
+  grunt.registerTask('test', [
     'csslint',
     'jshint',
+    'unit',
+    'e2e'
+  ]);
+  grunt.registerTask('unit', [
     'jasmine',
     'qunit'
   ]);
@@ -713,8 +717,7 @@ module.exports = function( grunt ){
   grunt.registerTask('default', [
     'clean',
     'jsdoc',
-    'unit',
-    'e2e',
+    'test',
     'build'
   ]);
 };

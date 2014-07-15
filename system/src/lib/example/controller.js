@@ -2,6 +2,8 @@
  * @summary
  *  AngularJS Controller
  * @since 0.1.0
+ * @requires {@link external:angular angular}
+ * @requires {@link external:ngDefine ngDefine}
  * @namespace example/controller
  * @description
  *  The main application controller collection.
@@ -36,14 +38,15 @@ ngDefine('example.controller', [
 			 * @protected
 			 */
 			$scope.title = 'Home Page';
-			/** @memberof example/controller.HomeController */
+			/**
+			 * @memberof example/controller.HomeController
+			 */
 			$scope.content = {
 				name: 'Hola Mundo',
 				description: 'A typical "Hello World" example'
 			};
 			/**
 			 * @memberof example/controller.HomeController
-			 * @protected
 			 */
 			$scope.debug = {
 				location: $location.url(),
@@ -87,27 +90,39 @@ ngDefine('example.controller', [
 				$scope.user = angular.copy(session.user);
 				$scope.update();
 			}
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.fetch = function(){
 				session.fetch().then(success);
 			};
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.login = function(){
 				session.login($scope.user).then(success);
 			};
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.logout = function(){
 				session.logout().then(success);
 			};
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.reset = function(){
 				$scope.user = angular.copy($scope.cache);
 			};
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.unchanged = function(){
 				return angular.equals($scope.user, $scope.cache);
 			};
-			/** @memberof example/controller.LoginController */
+			/**
+			 * @memberof example/controller.LoginController
+			 */
 			$scope.update = function(){
 				$scope.cache = angular.copy($scope.user);
 			};

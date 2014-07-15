@@ -2,6 +2,8 @@
  * @summary
  *  AngularJS Directive
  * @since 0.1.0
+ * @requires {@link external:angular angular}
+ * @requires {@link external:ngDefine ngDefine}
  * @namespace example/directive
  * @description
  *  The main application directive collection.

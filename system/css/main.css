@@ -284,10 +284,12 @@ ul.nav {
 
 .menu:before {
 	content: '\2773';
+	padding-right: 0.3em;
 }
 
 .menu:after {
 	content: '\2772';
+	padding-left: 0.3em;
 }
 
 .menu > li {
@@ -296,7 +298,7 @@ ul.nav {
 
 .menu > li:before {
 	content: '|';
-	padding-right: 0.3em;
+	padding: 0 0.3em;
 }
 
 .menu > li:nth-child(1):before {

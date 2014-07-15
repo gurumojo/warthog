@@ -2,6 +2,8 @@
  * @summary
  *  AngularJS Service
  * @since 0.1.0
+ * @requires {@link external:angular angular}
+ * @requires {@link external:ngDefine ngDefine}
  * @namespace example/service
  * @description
  *  The main application service collection.

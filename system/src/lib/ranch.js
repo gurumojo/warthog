@@ -3,9 +3,9 @@
  *  Ranch Module
  * @since 0.0.1
  * @requires {@link http://underscorejs.org/ underscore}
- * @requires {@link Corral}
- * @requires {@link Pasture}
- * @requires {@link Wrangler}
+ * @requires {@link module:Corral Corral}
+ * @requires {@link module:Pasture Pasture}
+ * @requires {@link module:Wrangler Wrangler}
  * @module ranch
  * @description
  *  This module returns an object of type ranch.

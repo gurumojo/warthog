@@ -2,6 +2,8 @@
  * @summary
  *  AngularJS Filter
  * @since 0.1.0
+ * @requires {@link external:angular angular}
+ * @requires {@link external:ngDefine ngDefine}
  * @namespace example/filter
  * @description
  *  The main application filter collection.

@@ -2,10 +2,13 @@
  * @summary
  *  AngularJS Router
  * @since 0.1.0
+ * @requires {@link external:angular angular}
+ * @requires {@link external:angular-route angular-route}
  * @requires {@link example/controller}
  * @requires {@link example/directive}
  * @requires {@link example/filter}
  * @requires {@link example/service}
+ * @requires {@link external:ngDefine ngDefine}
  * @namespace example/router
  * @description
  *  The main application route request handler.
