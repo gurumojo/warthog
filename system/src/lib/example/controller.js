@@ -34,19 +34,29 @@ ngDefine('example.controller', [
 		 */
 		function( $scope, $route, $location ){
 			/**
-			 * @memberof example/controller.HomeController
+			 * @summary
+			 *  View Title
 			 * @protected
+			 * @memberof! example/controller.HomeController#
+			 * @type {string}
 			 */
 			$scope.title = 'Home Page';
 			/**
-			 * @memberof example/controller.HomeController
+			 * @summary
+			 *  View Content
+			 * @memberof! example/controller.HomeController#
+			 * @type {object}
 			 */
 			$scope.content = {
 				name: 'Hola Mundo',
 				description: 'A typical "Hello World" example'
 			};
 			/**
-			 * @memberof example/controller.HomeController
+			 * @summary
+			 *  View Debug
+			 * @protected
+			 * @memberof! example/controller.HomeController#
+			 * @type {object}
 			 */
 			$scope.debug = {
 				location: $location.url(),
@@ -91,44 +101,61 @@ ngDefine('example.controller', [
 				$scope.update();
 			}
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Session Fetch
+			 * @memberof! example/controller.LoginController#
 			 */
 			$scope.fetch = function(){
 				session.fetch().then(success);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Session Login
+			 * @memberof! example/controller.LoginController#
 			 */
 			$scope.login = function(){
 				session.login($scope.user).then(success);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Session Logout
+			 * @memberof! example/controller.LoginController#
 			 */
 			$scope.logout = function(){
 				session.logout().then(success);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Form Reset
+			 * @memberof! example/controller.LoginController#
 			 */
 			$scope.reset = function(){
 				$scope.user = angular.copy($scope.cache);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Form Unchanged
+			 * @memberof! example/controller.LoginController#
+			 * @returns
+			 *  {boolean}
 			 */
 			$scope.unchanged = function(){
 				return angular.equals($scope.user, $scope.cache);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  Form Update
+			 * @memberof! example/controller.LoginController#
 			 */
 			$scope.update = function(){
 				$scope.cache = angular.copy($scope.user);
 			};
 			/**
-			 * @memberof example/controller.LoginController
+			 * @summary
+			 *  View Debug
 			 * @protected
+			 * @memberof! example/controller.LoginController#
+			 * @type {object}
 			 */
 			$scope.debug = {
 				//scope: {

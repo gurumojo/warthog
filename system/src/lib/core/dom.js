@@ -9,10 +9,10 @@
  * @description
  *  This module provides a demonstration of how to bootstrap an example
  *  application. It is required by the {@link module:main main} module
- *  once it has determined that it is executing in a {@link core/dom DOM}
- *  environment, e.g. a browser window. This is where one might include
- *  any shared modules common throughout the client interface or
- *  complete any necessary system initialization.
+ *  once it has determined that it is executing in a DOM environment,
+ *  e.g. a browser window. This is where one might include any shared
+ *  modules common throughout the client interface or complete any
+ *  necessary system initialization.
  */
 define([
 

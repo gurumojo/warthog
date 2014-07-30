@@ -117,7 +117,6 @@ module.exports = function( grunt ){
           keepRunner: true,
           outfile: 'system/src/test/jasmine/index.html',
           specs: 'system/src/test/jasmine/unit/*.js',
-          //template: require('grunt-template-jasmine-requirejs'),
           template: require('./system/src/test/jasmine/template.js'),
           templateOptions: {
             //requireConfigFile: 'system/src/test/jasmine.js'
@@ -130,10 +129,9 @@ module.exports = function( grunt ){
           keepRunner: true,
           outfile: 'system/src/test/example/index.html',
           specs: 'system/src/test/example/unit/*.js',
-          //helpers: 'system/lib/ng*.js',
           template: require('./system/src/test/example/template.js'),
           templateOptions: {
-			require: ['ngDefine', 'angular', 'angular-mocks', 'angular-route'],
+	    	require: ['ngDefine', 'angular', 'angular-mocks', 'angular-route'],
             callback: function(){ /* onLoad */ }
           }
         }
