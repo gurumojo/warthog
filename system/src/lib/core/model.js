@@ -25,8 +25,7 @@ define([
 	 *  history in a private cache. The same is true of members added
 	 *  to an instance after construction when using the set() method,
 	 *  but object members created via direct assignment do not track
-	 *  revisions. To access the history of a particular member, pass
-	 *  a truthy value as the optional second parameter to get().
+	 *  revisions.
 	 * @constructor
 	 */
 	function Model(option){
@@ -44,9 +43,15 @@ define([
 			 *  {boolean} [history] - include all versions
 			 * @return
 			 *  {*} instance member property
+			 * @description
+			 *  A falsey first argument returns the entire model state (excluding
+			 *  any keys created via direct assignment). To access the history of
+			 *  a particular member, pass a truthy value for the second argument.
 			 */
 			value: function get(key, history){
-				return (history ? memento[key] : state[key]);
+				var item = key ? state[key] : state;
+				var list = key ? memento[key] : memento;
+				return history ? list : item;
 			},
 			writable: false
 		});
@@ -62,6 +67,8 @@ define([
 			 *  {*} value - instance member property
 			 * @return
 			 *  {*} instance member property
+			 * @description
+			 *  Create member properties which track their own revision history.
 			 */
 			value: function set(key, value){
 				return this.hasOwnProperty(key) ? (this[key] = value) : create(value, key);
