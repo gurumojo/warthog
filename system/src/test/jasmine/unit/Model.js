@@ -37,39 +37,63 @@ define([
 				this.model = new Model({name: 'example'});
 			});
 			describe('get', function(){
-				it('returns specific instance member values', function(){
+				it('returns {*} specific instance properties', function(){
 					expect(this.model.get('name')).toBe('example');
 				});
-				it('returns history of specific instance member values', function(){
+				it('returns {array} specific instance property revisions', function(){
 					var result = this.model.get('name', true);
 					expect(_.isArray(result)).toBe(true);
 					expect(result.length).toBe(1);
 					expect(_.has(result[0], 'state')).toBe(true);
 					expect(_.has(result[0], 'timestamp')).toBe(true);
 				});
-				it('returns a collection of instance member values', function(){
+				it('returns {object} a collection of instance properties', function(){
 					expect(typeof this.model.get()).toBe('object');
 					expect(this.model.get().name).toBe('example');
 				});
-				it('returns history of a collection of instance member values', function(){
-					var result = this.model.get('', true);
+				it('returns {object} a collection of instance property revision arrays', function(){
+					var result = this.model.get(null, true);
 					expect(_.isArray(result.name)).toBe(true);
 					expect(result.name.length).toBe(1);
 					expect(_.has(result.name[0], 'state')).toBe(true);
 					expect(_.has(result.name[0], 'timestamp')).toBe(true);
 				});
-				it('excludes directly assigned instance member values', function(){
+				it('excludes instance properties created by direct assignment', function(){
 					expect(this.model.property).toBe(undefined);
 					this.model.property = 'example';
 					expect(this.model.get('property')).toBe(undefined);
 					expect(this.model.get().property).toBe(undefined);
 					expect(this.model.property).toBe('example');
 				});
+				it('excludes instance properties by key not matching RegExp', function(){
+					var set = this.model.set('test', 'schnazzy');
+					var get = this.model.get();
+					var regex = this.model.get(/test/);
+					expect(set).toBe('schnazzy');
+					expect(_.size(get)).toBe(2);
+					expect(_.size(regex)).toBe(1);
+				});
+				it('excludes instance properties by value not matched by attributes', function(){
+					var set = this.model.set('where', {foo: 'bar'});
+					var get = this.model.get();
+					var where = this.model.get({foo: 'bar'});
+					expect(set).toEqual({foo: 'bar'});
+					expect(_.size(get)).toBe(2);
+					expect(_.size(where)).toBe(1);
+				});
+				it('excludes instance properties by property not matched by function', function(){
+					var set = this.model.set('filter', {foo: 'bar'});
+					var get = this.model.get();
+					var filter = this.model.get(function(x){return x.foo === 'bar'});
+					expect(set).toEqual({foo: 'bar'});
+					expect(_.size(get)).toBe(2);
+					expect(_.size(filter)).toBe(1);
+				});
 			});
 			describe('set', function(){
 				var key = 'name';
 				var value = 'property';
-				it('returns the value applied to an instance member', function(){
+				it('returns {*} assigned instance property values', function(){
 					expect(this.model.set(key, value)).toBe(value);
 					expect(this.model.get(key)).toBe(value);
 				});
