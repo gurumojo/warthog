@@ -36,7 +36,7 @@ The default Grunt task will clean temporary files, build [JSDoc](http://usejsdoc
 
 >`grunt`
 
-The doc alias deletes existing files and runs JSDoc to generate HTML documentation:
+The doc alias runs JSDoc to generate HTML documentation after purging existing files:
 
 >`grunt doc`
 
@@ -242,6 +242,7 @@ Filesystem
 			- core/ (framework bootstrap)
 				- cli.js (Node shell bindings)
 				- dom.js (browser window bindings)
+				- model.js (base model constructor)
 			- example/ (AngularJS application)
 				- controller.js (object class code)
 				- directive.js (smart markup)

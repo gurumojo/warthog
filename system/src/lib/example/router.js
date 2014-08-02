@@ -34,7 +34,8 @@ ngDefine('example', [
 		 * @function example/router.main
 		 * @description
 		 *  Declare $location.path handler configurations used by the angular
-		 *  $route service.
+		 *  $route service. The template strings contain directives applied to
+		 *  the given controller.
 		 */
 		function( $routeProvider ){
 

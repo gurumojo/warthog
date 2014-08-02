@@ -11,8 +11,9 @@
 ngDefine('example.controller', [
 
 	// dependencies
+	'core/model'
 
-], function(module){
+], function(module, Model){
 	'use strict';
 
 	module.controller('HomeController',
@@ -47,10 +48,10 @@ ngDefine('example.controller', [
 			 * @memberof! example/controller.HomeController#
 			 * @type {object}
 			 */
-			$scope.content = {
+			$scope.content = new Model({
 				name: 'Hola Mundo',
 				description: 'A typical "Hello World" example'
-			};
+			});
 			/**
 			 * @summary
 			 *  View Debug
@@ -64,6 +65,7 @@ ngDefine('example.controller', [
 				route: $route.routes[$location.url().split('?')[0]],
 				scope: {
 					content: $scope.content,
+					revision: $scope.content.get(null, true),
 					title: $scope.title
 				}
 			};
